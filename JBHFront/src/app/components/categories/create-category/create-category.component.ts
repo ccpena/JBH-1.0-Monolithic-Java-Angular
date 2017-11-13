@@ -48,9 +48,7 @@ export class CreateCategoryComponent implements OnInit {
     this.srvCategory.registrarCategoria(this.newCtgry).subscribe( respuesta => {
       this.showMsg = true;
       setTimeout(() => {
-        console.log('Mostrando Alerta....');
         this.showMsg = false;
-        console.log('Quitar Alerta');
       }, 3000);
     });
 

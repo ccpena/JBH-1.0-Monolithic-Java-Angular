@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Category } from 'app/interfaces/category';
 import { Http, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 import 'rxjs/Rx';
 
 @Injectable()
 export class CategoryService {
 
-  CATEGORY_SRV: string = 'http://localhost:8181/category/add';
+  CATEGORY_SRV: string = environment.API_URL + 'category/add';
 
   constructor(private http:Http) { 
 
