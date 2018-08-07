@@ -1,0 +1,11 @@
+version: '2'
+services:
+    jbh-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/jbh/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=jbh
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
