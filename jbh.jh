@@ -1,0 +1,83 @@
+DEFAULT_MAX_NAMELENGTH = 100
+// Categories Module
+entity Categories {	
+    name String required maxlength(DEFAULT_MAX_NAMELENGTH),
+    definedByJBH Boolean,
+    creationDate LocalDate
+}
+
+entity SubCategories {	
+    name String required maxlength(DEFAULT_MAX_NAMELENGTH),
+    definedByJBH Boolean,
+    creationDate LocalDate
+}
+
+// Users
+
+entity UsersGroup {	
+    name String,
+    invitationAccepted Boolean
+}
+
+entity UserGroupCategories {}
+
+
+// Account Module
+entity Accounts {}
+
+entity AccountTypes {	
+    description String,
+    definedByJBH Boolean
+}
+
+
+// Movementes
+entity MovementesOutgoings {	
+    totalValue BigDecimal,
+    createDate LocalDate
+}
+
+entity ActiveDebts {	
+    value BigDecimal,
+    createDate LocalDate
+}
+
+relationship OneToOne {
+	Accounts{type} to AccountTypes,
+    Accounts{idUsrGroup} to UsersGroup,        
+    UserGroupCategories{idUserGroup} to UsersGroup,    	
+    UsersGroup{idUserOwner} to User,
+    UsersGroup{idUserInvited} to User,        
+    MovementesOutgoings{idUserGroup} to UsersGroup,
+    MovementesOutgoings{idSubCategory} to SubCategories,
+    MovementesOutgoings{paymentMethod} to Accounts,        
+    ActiveDebts{idDebtor} to UsersGroup,
+    ActiveDebts{idCreditor} to UsersGroup,
+    ActiveDebts{idSubCategory} to SubCategories,
+    ActiveDebts{idMovementOutgoing} to MovementesOutgoings
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {	
+    Categories{subCategory} to SubCategories,
+    UserGroupCategories{idCategory} to Categories
+}
+
+
+
+
+// Set pagination options
+paginate SubCategories, Categories with infinite-scroll
+paginate SubCategories with pagination
+paginate Categories with pagination
+
+// Skip Angular Components
+
+
+// Set service options to all except few
+service * with serviceImpl
+
+dto * with mapstruct
+
+// Set an angular suffix
+angularSuffix * with JBH
