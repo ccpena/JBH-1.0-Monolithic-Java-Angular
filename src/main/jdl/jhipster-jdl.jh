@@ -15,14 +15,12 @@ entity SubCategories {
 // Users
 
 entity UsersGroup {	
-    name String
+    name String,
+    invitationAccepted Boolean
 }
 
 entity UserGroupCategories {}
 
-entity MembersGroup {
-	invitationAccepted Boolean
-}
 
 // Account Module
 entity Accounts {}
@@ -47,10 +45,9 @@ entity ActiveDebts {
 relationship OneToOne {
 	Accounts{type} to AccountTypes,
     Accounts{idUsrGroup} to UsersGroup,        
-    UserGroupCategories{idUserGroup} to UsersGroup,    
-	MembersGroup{idUserGroup} to UsersGroup,
-    MembersGroup{idUserOwner} to User,
-    MembersGroup{idUserInvited} to User,        
+    UserGroupCategories{idUserGroup} to UsersGroup,    	
+    UsersGroup{idUserOwner} to User,
+    UsersGroup{idUserInvited} to User,        
     MovementesOutgoings{idUserGroup} to UsersGroup,
     MovementesOutgoings{idSubCategory} to SubCategories,
     MovementesOutgoings{paymentMethod} to Accounts,        
