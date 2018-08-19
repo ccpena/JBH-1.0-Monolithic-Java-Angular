@@ -1,54 +1,52 @@
-import { browser } from 'protractor';
-import { NavBarPage } from './../../page-objects/jhi-page-objects';
+import { browser, ExpectedConditions as ec } from 'protractor';
+import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
+
 import { AccountTypesComponentsPage, AccountTypesUpdatePage } from './account-types-jbh.page-object';
 
 describe('AccountTypes e2e test', () => {
     let navBarPage: NavBarPage;
+    let signInPage: SignInPage;
     let accountTypesUpdatePage: AccountTypesUpdatePage;
     let accountTypesComponentsPage: AccountTypesComponentsPage;
 
-    beforeAll(() => {
-        browser.get('/');
-        browser.waitForAngular();
+    beforeAll(async () => {
+        await browser.get('/');
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
-        browser.waitForAngular();
+        signInPage = await navBarPage.getSignInPage();
+        await signInPage.loginWithOAuth('admin', 'admin');
+        await browser.wait(ec.visibilityOf(navBarPage.entityMenu), 5000);
     });
 
-    it('should load AccountTypes', () => {
-        navBarPage.goToEntity('account-types-jbh');
+    it('should load AccountTypes', async () => {
+        await navBarPage.goToEntity('account-types-jbh');
         accountTypesComponentsPage = new AccountTypesComponentsPage();
-        expect(accountTypesComponentsPage.getTitle()).toMatch(/jbhApp.accountTypes.home.title/);
+        expect(await accountTypesComponentsPage.getTitle()).toMatch(/jbhApp.accountTypes.home.title/);
     });
 
-    it('should load create AccountTypes page', () => {
-        accountTypesComponentsPage.clickOnCreateButton();
+    it('should load create AccountTypes page', async () => {
+        await accountTypesComponentsPage.clickOnCreateButton();
         accountTypesUpdatePage = new AccountTypesUpdatePage();
-        expect(accountTypesUpdatePage.getPageTitle()).toMatch(/jbhApp.accountTypes.home.createOrEditLabel/);
-        accountTypesUpdatePage.cancel();
+        expect(await accountTypesUpdatePage.getPageTitle()).toMatch(/jbhApp.accountTypes.home.createOrEditLabel/);
+        await accountTypesUpdatePage.cancel();
     });
 
-    it('should create and save AccountTypes', () => {
-        accountTypesComponentsPage.clickOnCreateButton();
-        accountTypesUpdatePage.setDescriptionInput('description');
-        expect(accountTypesUpdatePage.getDescriptionInput()).toMatch('description');
-        accountTypesUpdatePage
-            .getDefinedByJBHInput()
-            .isSelected()
-            .then(selected => {
-                if (selected) {
-                    accountTypesUpdatePage.getDefinedByJBHInput().click();
-                    expect(accountTypesUpdatePage.getDefinedByJBHInput().isSelected()).toBeFalsy();
-                } else {
-                    accountTypesUpdatePage.getDefinedByJBHInput().click();
-                    expect(accountTypesUpdatePage.getDefinedByJBHInput().isSelected()).toBeTruthy();
-                }
-            });
-        accountTypesUpdatePage.save();
-        expect(accountTypesUpdatePage.getSaveButton().isPresent()).toBeFalsy();
+    it('should create and save AccountTypes', async () => {
+        await accountTypesComponentsPage.clickOnCreateButton();
+        await accountTypesUpdatePage.setDescriptionInput('description');
+        expect(await accountTypesUpdatePage.getDescriptionInput()).toMatch('description');
+        const selectedDefinedByJBH = accountTypesUpdatePage.getDefinedByJBHInput();
+        if (await selectedDefinedByJBH.isSelected()) {
+            await accountTypesUpdatePage.getDefinedByJBHInput().click();
+            expect(await accountTypesUpdatePage.getDefinedByJBHInput().isSelected()).toBeFalsy();
+        } else {
+            await accountTypesUpdatePage.getDefinedByJBHInput().click();
+            expect(await accountTypesUpdatePage.getDefinedByJBHInput().isSelected()).toBeTruthy();
+        }
+        await accountTypesUpdatePage.save();
+        expect(await accountTypesUpdatePage.getSaveButton().isPresent()).toBeFalsy();
     });
 
-    afterAll(() => {
-        navBarPage.autoSignOut();
+    afterAll(async () => {
+        await navBarPage.autoSignOut();
     });
 });

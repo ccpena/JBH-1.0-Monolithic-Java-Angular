@@ -12,6 +12,12 @@ public class UsersGroupDTO implements Serializable {
 
     private String name;
 
+    private Boolean invitationAccepted;
+
+    private Long idUserOwnerId;
+
+    private Long idUserInvitedId;
+
     public Long getId() {
         return id;
     }
@@ -26,6 +32,30 @@ public class UsersGroupDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean isInvitationAccepted() {
+        return invitationAccepted;
+    }
+
+    public void setInvitationAccepted(Boolean invitationAccepted) {
+        this.invitationAccepted = invitationAccepted;
+    }
+
+    public Long getIdUserOwnerId() {
+        return idUserOwnerId;
+    }
+
+    public void setIdUserOwnerId(Long userId) {
+        this.idUserOwnerId = userId;
+    }
+
+    public Long getIdUserInvitedId() {
+        return idUserInvitedId;
+    }
+
+    public void setIdUserInvitedId(Long userId) {
+        this.idUserInvitedId = userId;
     }
 
     @Override
@@ -54,6 +84,9 @@ public class UsersGroupDTO implements Serializable {
         return "UsersGroupDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", invitationAccepted='" + isInvitationAccepted() + "'" +
+            ", idUserOwner=" + getIdUserOwnerId() +
+            ", idUserInvited=" + getIdUserInvitedId() +
             "}";
     }
 }

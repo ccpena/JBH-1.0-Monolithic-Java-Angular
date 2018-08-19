@@ -14,7 +14,26 @@
                     <input type="text" class="form-control" name="name" id="field_name"
                         [(ngModel)]="usersGroup.name" />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.usersGroup.invitationAccepted" for="field_invitationAccepted">Invitation Accepted</label>
+                    <input type="checkbox" class="form-control" name="invitationAccepted" id="field_invitationAccepted"
+                        [(ngModel)]="usersGroup.invitationAccepted" />
+                </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.usersGroup.idUserOwner" for="field_idUserOwner">Id User Owner</label>
+                    <select class="form-control" id="field_idUserOwner" name="idUserOwner" [(ngModel)]="usersGroup.idUserOwnerId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.usersGroup.idUserInvited" for="field_idUserInvited">Id User Invited</label>
+                    <select class="form-control" id="field_idUserInvited" name="idUserInvited" [(ngModel)]="usersGroup.idUserInvitedId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

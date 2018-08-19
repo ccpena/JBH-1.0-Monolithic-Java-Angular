@@ -8,10 +8,16 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity UsersGroup and its DTO UsersGroupDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface UsersGroupMapper extends EntityMapper<UsersGroupDTO, UsersGroup> {
 
+    @Mapping(source = "idUserOwner.id", target = "idUserOwnerId")
+    @Mapping(source = "idUserInvited.id", target = "idUserInvitedId")
+    UsersGroupDTO toDto(UsersGroup usersGroup);
 
+    @Mapping(source = "idUserOwnerId", target = "idUserOwner")
+    @Mapping(source = "idUserInvitedId", target = "idUserInvited")
+    UsersGroup toEntity(UsersGroupDTO usersGroupDTO);
 
     default UsersGroup fromId(Long id) {
         if (id == null) {

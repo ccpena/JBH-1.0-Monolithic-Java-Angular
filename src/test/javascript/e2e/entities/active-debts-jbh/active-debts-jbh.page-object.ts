@@ -1,14 +1,14 @@
-import { element, by, promise, ElementFinder } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 
 export class ActiveDebtsComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-active-debts-jbh div h2#page-heading span')).first();
 
-    clickOnCreateButton(): promise.Promise<void> {
-        return this.createButton.click();
+    async clickOnCreateButton() {
+        await this.createButton.click();
     }
 
-    getTitle(): any {
+    async getTitle() {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -24,108 +24,108 @@ export class ActiveDebtsUpdatePage {
     idSubCategorySelect = element(by.id('field_idSubCategory'));
     idMovementOutgoingSelect = element(by.id('field_idMovementOutgoing'));
 
-    getPageTitle() {
+    async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    setValueInput(value): promise.Promise<void> {
-        return this.valueInput.sendKeys(value);
+    async setValueInput(value) {
+        await this.valueInput.sendKeys(value);
     }
 
-    getValueInput() {
+    async getValueInput() {
         return this.valueInput.getAttribute('value');
     }
 
-    setCreateDateInput(createDate): promise.Promise<void> {
-        return this.createDateInput.sendKeys(createDate);
+    async setCreateDateInput(createDate) {
+        await this.createDateInput.sendKeys(createDate);
     }
 
-    getCreateDateInput() {
+    async getCreateDateInput() {
         return this.createDateInput.getAttribute('value');
     }
 
-    idDebtorSelectLastOption(): promise.Promise<void> {
-        return this.idDebtorSelect
+    async idDebtorSelectLastOption() {
+        await this.idDebtorSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idDebtorSelectOption(option): promise.Promise<void> {
-        return this.idDebtorSelect.sendKeys(option);
+    async idDebtorSelectOption(option) {
+        await this.idDebtorSelect.sendKeys(option);
     }
 
     getIdDebtorSelect(): ElementFinder {
         return this.idDebtorSelect;
     }
 
-    getIdDebtorSelectedOption() {
+    async getIdDebtorSelectedOption() {
         return this.idDebtorSelect.element(by.css('option:checked')).getText();
     }
 
-    idCreditorSelectLastOption(): promise.Promise<void> {
-        return this.idCreditorSelect
+    async idCreditorSelectLastOption() {
+        await this.idCreditorSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idCreditorSelectOption(option): promise.Promise<void> {
-        return this.idCreditorSelect.sendKeys(option);
+    async idCreditorSelectOption(option) {
+        await this.idCreditorSelect.sendKeys(option);
     }
 
     getIdCreditorSelect(): ElementFinder {
         return this.idCreditorSelect;
     }
 
-    getIdCreditorSelectedOption() {
+    async getIdCreditorSelectedOption() {
         return this.idCreditorSelect.element(by.css('option:checked')).getText();
     }
 
-    idSubCategorySelectLastOption(): promise.Promise<void> {
-        return this.idSubCategorySelect
+    async idSubCategorySelectLastOption() {
+        await this.idSubCategorySelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idSubCategorySelectOption(option): promise.Promise<void> {
-        return this.idSubCategorySelect.sendKeys(option);
+    async idSubCategorySelectOption(option) {
+        await this.idSubCategorySelect.sendKeys(option);
     }
 
     getIdSubCategorySelect(): ElementFinder {
         return this.idSubCategorySelect;
     }
 
-    getIdSubCategorySelectedOption() {
+    async getIdSubCategorySelectedOption() {
         return this.idSubCategorySelect.element(by.css('option:checked')).getText();
     }
 
-    idMovementOutgoingSelectLastOption(): promise.Promise<void> {
-        return this.idMovementOutgoingSelect
+    async idMovementOutgoingSelectLastOption() {
+        await this.idMovementOutgoingSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idMovementOutgoingSelectOption(option): promise.Promise<void> {
-        return this.idMovementOutgoingSelect.sendKeys(option);
+    async idMovementOutgoingSelectOption(option) {
+        await this.idMovementOutgoingSelect.sendKeys(option);
     }
 
     getIdMovementOutgoingSelect(): ElementFinder {
         return this.idMovementOutgoingSelect;
     }
 
-    getIdMovementOutgoingSelectedOption() {
+    async getIdMovementOutgoingSelectedOption() {
         return this.idMovementOutgoingSelect.element(by.css('option:checked')).getText();
     }
 
-    save(): promise.Promise<void> {
-        return this.saveButton.click();
+    async save() {
+        await this.saveButton.click();
     }
 
-    cancel(): promise.Promise<void> {
-        return this.cancelButton.click();
+    async cancel() {
+        await this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

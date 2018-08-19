@@ -1,14 +1,14 @@
-import { element, by, promise, ElementFinder } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 
 export class AccountsComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-accounts-jbh div h2#page-heading span')).first();
 
-    clickOnCreateButton(): promise.Promise<void> {
-        return this.createButton.click();
+    async clickOnCreateButton() {
+        await this.createButton.click();
     }
 
-    getTitle(): any {
+    async getTitle() {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -20,54 +20,54 @@ export class AccountsUpdatePage {
     typeSelect = element(by.id('field_type'));
     idUsrGroupSelect = element(by.id('field_idUsrGroup'));
 
-    getPageTitle() {
+    async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    typeSelectLastOption(): promise.Promise<void> {
-        return this.typeSelect
+    async typeSelectLastOption() {
+        await this.typeSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    typeSelectOption(option): promise.Promise<void> {
-        return this.typeSelect.sendKeys(option);
+    async typeSelectOption(option) {
+        await this.typeSelect.sendKeys(option);
     }
 
     getTypeSelect(): ElementFinder {
         return this.typeSelect;
     }
 
-    getTypeSelectedOption() {
+    async getTypeSelectedOption() {
         return this.typeSelect.element(by.css('option:checked')).getText();
     }
 
-    idUsrGroupSelectLastOption(): promise.Promise<void> {
-        return this.idUsrGroupSelect
+    async idUsrGroupSelectLastOption() {
+        await this.idUsrGroupSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idUsrGroupSelectOption(option): promise.Promise<void> {
-        return this.idUsrGroupSelect.sendKeys(option);
+    async idUsrGroupSelectOption(option) {
+        await this.idUsrGroupSelect.sendKeys(option);
     }
 
     getIdUsrGroupSelect(): ElementFinder {
         return this.idUsrGroupSelect;
     }
 
-    getIdUsrGroupSelectedOption() {
+    async getIdUsrGroupSelectedOption() {
         return this.idUsrGroupSelect.element(by.css('option:checked')).getText();
     }
 
-    save(): promise.Promise<void> {
-        return this.saveButton.click();
+    async save() {
+        await this.saveButton.click();
     }
 
-    cancel(): promise.Promise<void> {
-        return this.cancelButton.click();
+    async cancel() {
+        await this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

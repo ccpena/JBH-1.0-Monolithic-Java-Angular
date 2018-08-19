@@ -26,6 +26,17 @@ public class UsersGroup implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "invitation_accepted")
+    private Boolean invitationAccepted;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User idUserOwner;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private User idUserInvited;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -46,6 +57,45 @@ public class UsersGroup implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean isInvitationAccepted() {
+        return invitationAccepted;
+    }
+
+    public UsersGroup invitationAccepted(Boolean invitationAccepted) {
+        this.invitationAccepted = invitationAccepted;
+        return this;
+    }
+
+    public void setInvitationAccepted(Boolean invitationAccepted) {
+        this.invitationAccepted = invitationAccepted;
+    }
+
+    public User getIdUserOwner() {
+        return idUserOwner;
+    }
+
+    public UsersGroup idUserOwner(User user) {
+        this.idUserOwner = user;
+        return this;
+    }
+
+    public void setIdUserOwner(User user) {
+        this.idUserOwner = user;
+    }
+
+    public User getIdUserInvited() {
+        return idUserInvited;
+    }
+
+    public UsersGroup idUserInvited(User user) {
+        this.idUserInvited = user;
+        return this;
+    }
+
+    public void setIdUserInvited(User user) {
+        this.idUserInvited = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -74,6 +124,7 @@ public class UsersGroup implements Serializable {
         return "UsersGroup{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", invitationAccepted='" + isInvitationAccepted() + "'" +
             "}";
     }
 }

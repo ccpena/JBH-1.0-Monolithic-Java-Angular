@@ -1,42 +1,54 @@
-import { browser } from 'protractor';
-import { NavBarPage } from './../../page-objects/jhi-page-objects';
+import { browser, ExpectedConditions as ec } from 'protractor';
+import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
+
 import { UsersGroupComponentsPage, UsersGroupUpdatePage } from './users-group-jbh.page-object';
 
 describe('UsersGroup e2e test', () => {
     let navBarPage: NavBarPage;
+    let signInPage: SignInPage;
     let usersGroupUpdatePage: UsersGroupUpdatePage;
     let usersGroupComponentsPage: UsersGroupComponentsPage;
 
-    beforeAll(() => {
-        browser.get('/');
-        browser.waitForAngular();
+    beforeAll(async () => {
+        await browser.get('/');
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
-        browser.waitForAngular();
+        signInPage = await navBarPage.getSignInPage();
+        await signInPage.loginWithOAuth('admin', 'admin');
+        await browser.wait(ec.visibilityOf(navBarPage.entityMenu), 5000);
     });
 
-    it('should load UsersGroups', () => {
-        navBarPage.goToEntity('users-group-jbh');
+    it('should load UsersGroups', async () => {
+        await navBarPage.goToEntity('users-group-jbh');
         usersGroupComponentsPage = new UsersGroupComponentsPage();
-        expect(usersGroupComponentsPage.getTitle()).toMatch(/jbhApp.usersGroup.home.title/);
+        expect(await usersGroupComponentsPage.getTitle()).toMatch(/jbhApp.usersGroup.home.title/);
     });
 
-    it('should load create UsersGroup page', () => {
-        usersGroupComponentsPage.clickOnCreateButton();
+    it('should load create UsersGroup page', async () => {
+        await usersGroupComponentsPage.clickOnCreateButton();
         usersGroupUpdatePage = new UsersGroupUpdatePage();
-        expect(usersGroupUpdatePage.getPageTitle()).toMatch(/jbhApp.usersGroup.home.createOrEditLabel/);
-        usersGroupUpdatePage.cancel();
+        expect(await usersGroupUpdatePage.getPageTitle()).toMatch(/jbhApp.usersGroup.home.createOrEditLabel/);
+        await usersGroupUpdatePage.cancel();
     });
 
-    it('should create and save UsersGroups', () => {
-        usersGroupComponentsPage.clickOnCreateButton();
-        usersGroupUpdatePage.setNameInput('name');
-        expect(usersGroupUpdatePage.getNameInput()).toMatch('name');
-        usersGroupUpdatePage.save();
-        expect(usersGroupUpdatePage.getSaveButton().isPresent()).toBeFalsy();
+    it('should create and save UsersGroups', async () => {
+        await usersGroupComponentsPage.clickOnCreateButton();
+        await usersGroupUpdatePage.setNameInput('name');
+        expect(await usersGroupUpdatePage.getNameInput()).toMatch('name');
+        const selectedInvitationAccepted = usersGroupUpdatePage.getInvitationAcceptedInput();
+        if (await selectedInvitationAccepted.isSelected()) {
+            await usersGroupUpdatePage.getInvitationAcceptedInput().click();
+            expect(await usersGroupUpdatePage.getInvitationAcceptedInput().isSelected()).toBeFalsy();
+        } else {
+            await usersGroupUpdatePage.getInvitationAcceptedInput().click();
+            expect(await usersGroupUpdatePage.getInvitationAcceptedInput().isSelected()).toBeTruthy();
+        }
+        await usersGroupUpdatePage.idUserOwnerSelectLastOption();
+        await usersGroupUpdatePage.idUserInvitedSelectLastOption();
+        await usersGroupUpdatePage.save();
+        expect(await usersGroupUpdatePage.getSaveButton().isPresent()).toBeFalsy();
     });
 
-    afterAll(() => {
-        navBarPage.autoSignOut();
+    afterAll(async () => {
+        await navBarPage.autoSignOut();
     });
 });

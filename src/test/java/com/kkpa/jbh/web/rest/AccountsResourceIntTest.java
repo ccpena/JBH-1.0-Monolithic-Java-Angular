@@ -201,7 +201,7 @@ public class AccountsResourceIntTest {
         // Create the Accounts
         AccountsDTO accountsDTO = accountsMapper.toDto(accounts);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restAccountsMockMvc.perform(put("/api/accounts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(accountsDTO)))

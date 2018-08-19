@@ -16,6 +16,6 @@ export class SubCategoriesJbh implements ISubCategoriesJbh {
         public creationDate?: Moment,
         public categoriesId?: number
     ) {
-        this.definedByJBH = false;
+        this.definedByJBH = this.definedByJBH || false;
     }
 }

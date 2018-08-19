@@ -45,6 +45,9 @@ public class UsersGroupResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_INVITATION_ACCEPTED = false;
+    private static final Boolean UPDATED_INVITATION_ACCEPTED = true;
+
     @Autowired
     private UsersGroupRepository usersGroupRepository;
 
@@ -91,7 +94,8 @@ public class UsersGroupResourceIntTest {
      */
     public static UsersGroup createEntity(EntityManager em) {
         UsersGroup usersGroup = new UsersGroup()
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .invitationAccepted(DEFAULT_INVITATION_ACCEPTED);
         return usersGroup;
     }
 
@@ -117,6 +121,7 @@ public class UsersGroupResourceIntTest {
         assertThat(usersGroupList).hasSize(databaseSizeBeforeCreate + 1);
         UsersGroup testUsersGroup = usersGroupList.get(usersGroupList.size() - 1);
         assertThat(testUsersGroup.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testUsersGroup.isInvitationAccepted()).isEqualTo(DEFAULT_INVITATION_ACCEPTED);
     }
 
     @Test
@@ -150,7 +155,8 @@ public class UsersGroupResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(usersGroup.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].invitationAccepted").value(hasItem(DEFAULT_INVITATION_ACCEPTED.booleanValue())));
     }
     
 
@@ -165,7 +171,8 @@ public class UsersGroupResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(usersGroup.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.invitationAccepted").value(DEFAULT_INVITATION_ACCEPTED.booleanValue()));
     }
     @Test
     @Transactional
@@ -188,7 +195,8 @@ public class UsersGroupResourceIntTest {
         // Disconnect from session so that the updates on updatedUsersGroup are not directly saved in db
         em.detach(updatedUsersGroup);
         updatedUsersGroup
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .invitationAccepted(UPDATED_INVITATION_ACCEPTED);
         UsersGroupDTO usersGroupDTO = usersGroupMapper.toDto(updatedUsersGroup);
 
         restUsersGroupMockMvc.perform(put("/api/users-groups")
@@ -201,6 +209,7 @@ public class UsersGroupResourceIntTest {
         assertThat(usersGroupList).hasSize(databaseSizeBeforeUpdate);
         UsersGroup testUsersGroup = usersGroupList.get(usersGroupList.size() - 1);
         assertThat(testUsersGroup.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testUsersGroup.isInvitationAccepted()).isEqualTo(UPDATED_INVITATION_ACCEPTED);
     }
 
     @Test
@@ -211,7 +220,7 @@ public class UsersGroupResourceIntTest {
         // Create the UsersGroup
         UsersGroupDTO usersGroupDTO = usersGroupMapper.toDto(usersGroup);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restUsersGroupMockMvc.perform(put("/api/users-groups")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(usersGroupDTO)))

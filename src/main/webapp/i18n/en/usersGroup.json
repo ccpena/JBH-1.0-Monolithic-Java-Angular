@@ -16,7 +16,10 @@
             "detail": {
                 "title": "Users Group"
             },
-            "name": "Name"
+            "name": "Name",
+            "invitationAccepted": "Invitation Accepted",
+            "idUserOwner": "Id User Owner",
+            "idUserInvited": "Id User Invited"
         }
     }
 }

@@ -250,7 +250,7 @@ public class SubCategoriesResourceIntTest {
         // Create the SubCategories
         SubCategoriesDTO subCategoriesDTO = subCategoriesMapper.toDto(subCategories);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restSubCategoriesMockMvc.perform(put("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(subCategoriesDTO)))
