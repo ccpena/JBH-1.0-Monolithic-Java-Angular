@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ActiveDebts.
+    -->
+    <changeSet id="20180819154831-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="id_debtor_id"
+                                 baseTableName="active_debts"
+                                 constraintName="fk_active_debts_id_debtor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_creditor_id"
+                                 baseTableName="active_debts"
+                                 constraintName="fk_active_debts_id_creditor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_sub_category_id"
+                                 baseTableName="active_debts"
+                                 constraintName="fk_active_debts_id_sub_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_categories"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_movement_outgoing_id"
+                                 baseTableName="active_debts"
+                                 constraintName="fk_active_debts_id_movement_outgoing_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="movementes_outgoings"/>
+
+    </changeSet>
+</databaseChangeLog>

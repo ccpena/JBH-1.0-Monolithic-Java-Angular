@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="subCategories">
+            <h2><span jhiTranslate="jbhApp.subCategories.detail.title">Sub Categories</span> {{subCategories.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.subCategories.name">Name</span></dt>
+                <dd>
+                    <span>{{subCategories.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.subCategories.definedByJBH">Defined By JBH</span></dt>
+                <dd>
+                    <span>{{subCategories.definedByJBH}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.subCategories.creationDate">Creation Date</span></dt>
+                <dd>
+                    <span>{{subCategories.creationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.subCategories.categories">Categories</span></dt>
+                <dd>
+                    <div *ngIf="subCategories.categoriesId">
+                        <a [routerLink]="['/categories-jbh', subCategories.categoriesId, 'view']">{{subCategories.categoriesId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/sub-categories-jbh', subCategories.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="movementesOutgoings">
+            <h2><span jhiTranslate="jbhApp.movementesOutgoings.detail.title">Movementes Outgoings</span> {{movementesOutgoings.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.movementesOutgoings.totalValue">Total Value</span></dt>
+                <dd>
+                    <span>{{movementesOutgoings.totalValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.movementesOutgoings.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{movementesOutgoings.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.movementesOutgoings.idUserGroup">Id User Group</span></dt>
+                <dd>
+                    <div *ngIf="movementesOutgoings.idUserGroupId">
+                        <a [routerLink]="['/users-group-jbh', movementesOutgoings.idUserGroupId, 'view']">{{movementesOutgoings.idUserGroupId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.movementesOutgoings.idSubCategory">Id Sub Category</span></dt>
+                <dd>
+                    <div *ngIf="movementesOutgoings.idSubCategoryId">
+                        <a [routerLink]="['/sub-categories-jbh', movementesOutgoings.idSubCategoryId, 'view']">{{movementesOutgoings.idSubCategoryId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.movementesOutgoings.paymentMethod">Payment Method</span></dt>
+                <dd>
+                    <div *ngIf="movementesOutgoings.paymentMethodId">
+                        <a [routerLink]="['/accounts-jbh', movementesOutgoings.paymentMethodId, 'view']">{{movementesOutgoings.paymentMethodId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/movementes-outgoings-jbh', movementesOutgoings.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

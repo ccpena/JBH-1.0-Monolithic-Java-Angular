@@ -38,6 +38,17 @@ public class CacheConfiguration {
             cm.createCache(com.kkpa.jbh.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.kkpa.jbh.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.kkpa.jbh.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.Categories.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.Categories.class.getName() + ".subCategories", jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.SubCategories.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.UsersGroup.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.UserGroupCategories.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.UserGroupCategories.class.getName() + ".idCategories", jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.MembersGroup.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.Accounts.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.AccountTypes.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.MovementesOutgoings.class.getName(), jcacheConfiguration);
+            cm.createCache(com.kkpa.jbh.domain.ActiveDebts.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

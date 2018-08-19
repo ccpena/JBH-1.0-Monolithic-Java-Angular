@@ -1,0 +1,57 @@
+{
+    "name": "ActiveDebts",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idDebtor",
+            "otherEntityName": "usersGroup",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "activeDebts"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idCreditor",
+            "otherEntityName": "usersGroup",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "activeDebts"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idSubCategory",
+            "otherEntityName": "subCategories",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "activeDebts"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idMovementOutgoing",
+            "otherEntityName": "movementesOutgoings",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "activeDebts"
+        }
+    ],
+    "changelogDate": "20180819154831",
+    "entityTableName": "active_debts",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "JBH"
+}

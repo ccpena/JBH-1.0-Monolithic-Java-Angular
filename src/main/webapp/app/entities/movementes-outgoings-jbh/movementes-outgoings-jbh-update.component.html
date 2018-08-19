@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-movementes-outgoings-jbh-heading" jhiTranslate="jbhApp.movementesOutgoings.home.createOrEditLabel">Create or edit a Movementes Outgoings</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!movementesOutgoings.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="movementesOutgoings.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.movementesOutgoings.totalValue" for="field_totalValue">Total Value</label>
+                    <input type="number" class="form-control" name="totalValue" id="field_totalValue"
+                        [(ngModel)]="movementesOutgoings.totalValue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.movementesOutgoings.createDate" for="field_createDate">Create Date</label>
+                    <div class="input-group">
+                        <input id="field_createDate" type="text" class="form-control" name="createDate" ngbDatepicker  #createDateDp="ngbDatepicker" [(ngModel)]="movementesOutgoings.createDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="createDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.movementesOutgoings.idUserGroup" for="field_idUserGroup">Id User Group</label>
+                    <select class="form-control" id="field_idUserGroup" name="idUserGroup" [(ngModel)]="movementesOutgoings.idUserGroupId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="usersGroupOption.id" *ngFor="let usersGroupOption of idusergroups; trackBy: trackUsersGroupById">{{usersGroupOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.movementesOutgoings.idSubCategory" for="field_idSubCategory">Id Sub Category</label>
+                    <select class="form-control" id="field_idSubCategory" name="idSubCategory" [(ngModel)]="movementesOutgoings.idSubCategoryId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subCategoriesOption.id" *ngFor="let subCategoriesOption of idsubcategories; trackBy: trackSubCategoriesById">{{subCategoriesOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.movementesOutgoings.paymentMethod" for="field_paymentMethod">Payment Method</label>
+                    <select class="form-control" id="field_paymentMethod" name="paymentMethod" [(ngModel)]="movementesOutgoings.paymentMethodId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="accountsOption.id" *ngFor="let accountsOption of paymentmethods; trackBy: trackAccountsById">{{accountsOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

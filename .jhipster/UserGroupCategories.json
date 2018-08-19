@@ -1,0 +1,30 @@
+{
+    "name": "UserGroupCategories",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idUserGroup",
+            "otherEntityName": "usersGroup",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userGroupCategories"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "idCategory",
+            "otherEntityName": "categories",
+            "otherEntityRelationshipName": "userGroupCategories"
+        }
+    ],
+    "changelogDate": "20180819154826",
+    "entityTableName": "user_group_categories",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "JBH"
+}

@@ -1,0 +1,49 @@
+{
+    "name": "MovementesOutgoings",
+    "fields": [
+        {
+            "fieldName": "totalValue",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idUserGroup",
+            "otherEntityName": "usersGroup",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movementesOutgoings"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idSubCategory",
+            "otherEntityName": "subCategories",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movementesOutgoings"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "paymentMethod",
+            "otherEntityName": "accounts",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "movementesOutgoings"
+        }
+    ],
+    "changelogDate": "20180819154830",
+    "entityTableName": "movementes_outgoings",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "JBH"
+}

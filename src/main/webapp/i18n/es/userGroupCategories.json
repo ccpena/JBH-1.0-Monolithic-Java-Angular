@@ -1,0 +1,23 @@
+
+{
+    "jbhApp": {
+        "userGroupCategories" : {
+            "home": {
+                "title": "User Group Categories",
+                "createLabel": "Crear nuevo User Group Categories",
+                "createOrEditLabel": "Crear o editar User Group Categories"
+            },
+            "created": "Un nuevo User Group Categories ha sido creado con el identificador {{ param }}",
+            "updated": "Un User Group Categories ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un User Group Categories ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar User Group Categories {{ id }}?"
+            },
+            "detail": {
+                "title": "User Group Categories"
+            },
+            "idUserGroup": "Id User Group",
+            "idCategory": "Id Category"
+        }
+    }
+}

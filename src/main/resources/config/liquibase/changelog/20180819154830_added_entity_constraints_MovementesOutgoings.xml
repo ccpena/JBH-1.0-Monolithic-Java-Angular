@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity MovementesOutgoings.
+    -->
+    <changeSet id="20180819154830-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="id_user_group_id"
+                                 baseTableName="movementes_outgoings"
+                                 constraintName="fk_movementes_outgoings_id_user_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_sub_category_id"
+                                 baseTableName="movementes_outgoings"
+                                 constraintName="fk_movementes_outgoings_id_sub_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_categories"/>
+
+        <addForeignKeyConstraint baseColumnNames="payment_method_id"
+                                 baseTableName="movementes_outgoings"
+                                 constraintName="fk_movementes_outgoings_payment_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="accounts"/>
+
+    </changeSet>
+</databaseChangeLog>

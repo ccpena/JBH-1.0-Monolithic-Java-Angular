@@ -1,0 +1,26 @@
+
+{
+    "jbhApp": {
+        "movementesOutgoings" : {
+            "home": {
+                "title": "Movementes Outgoings",
+                "createLabel": "Create a new Movementes Outgoings",
+                "createOrEditLabel": "Create or edit a Movementes Outgoings"
+            },
+            "created": "A new Movementes Outgoings is created with identifier {{ param }}",
+            "updated": "A Movementes Outgoings is updated with identifier {{ param }}",
+            "deleted": "A Movementes Outgoings is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Movementes Outgoings {{ id }}?"
+            },
+            "detail": {
+                "title": "Movementes Outgoings"
+            },
+            "totalValue": "Total Value",
+            "createDate": "Create Date",
+            "idUserGroup": "Id User Group",
+            "idSubCategory": "Id Sub Category",
+            "paymentMethod": "Payment Method"
+        }
+    }
+}

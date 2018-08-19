@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="accounts">
+            <h2><span jhiTranslate="jbhApp.accounts.detail.title">Accounts</span> {{accounts.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.accounts.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="accounts.typeId">
+                        <a [routerLink]="['/account-types-jbh', accounts.typeId, 'view']">{{accounts.typeId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.accounts.idUsrGroup">Id Usr Group</span></dt>
+                <dd>
+                    <div *ngIf="accounts.idUsrGroupId">
+                        <a [routerLink]="['/users-group-jbh', accounts.idUsrGroupId, 'view']">{{accounts.idUsrGroupId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/accounts-jbh', accounts.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

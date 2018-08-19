@@ -1,0 +1,25 @@
+
+{
+    "jbhApp": {
+        "membersGroup" : {
+            "home": {
+                "title": "Members Groups",
+                "createLabel": "Crear nuevo Members Group",
+                "createOrEditLabel": "Crear o editar Members Group"
+            },
+            "created": "Un nuevo Members Group ha sido creado con el identificador {{ param }}",
+            "updated": "Un Members Group ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Members Group ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Members Group {{ id }}?"
+            },
+            "detail": {
+                "title": "Members Group"
+            },
+            "invitationAccepted": "Invitation Accepted",
+            "idUserGroup": "Id User Group",
+            "idUserOwner": "Id User Owner",
+            "idUserInvited": "Id User Invited"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-active-debts-jbh-heading" jhiTranslate="jbhApp.activeDebts.home.createOrEditLabel">Create or edit a Active Debts</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!activeDebts.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="activeDebts.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.value" for="field_value">Value</label>
+                    <input type="number" class="form-control" name="value" id="field_value"
+                        [(ngModel)]="activeDebts.value" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.createDate" for="field_createDate">Create Date</label>
+                    <div class="input-group">
+                        <input id="field_createDate" type="text" class="form-control" name="createDate" ngbDatepicker  #createDateDp="ngbDatepicker" [(ngModel)]="activeDebts.createDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="createDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.idDebtor" for="field_idDebtor">Id Debtor</label>
+                    <select class="form-control" id="field_idDebtor" name="idDebtor" [(ngModel)]="activeDebts.idDebtorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="usersGroupOption.id" *ngFor="let usersGroupOption of iddebtors; trackBy: trackUsersGroupById">{{usersGroupOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.idCreditor" for="field_idCreditor">Id Creditor</label>
+                    <select class="form-control" id="field_idCreditor" name="idCreditor" [(ngModel)]="activeDebts.idCreditorId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="usersGroupOption.id" *ngFor="let usersGroupOption of idcreditors; trackBy: trackUsersGroupById">{{usersGroupOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.idSubCategory" for="field_idSubCategory">Id Sub Category</label>
+                    <select class="form-control" id="field_idSubCategory" name="idSubCategory" [(ngModel)]="activeDebts.idSubCategoryId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subCategoriesOption.id" *ngFor="let subCategoriesOption of idsubcategories; trackBy: trackSubCategoriesById">{{subCategoriesOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.activeDebts.idMovementOutgoing" for="field_idMovementOutgoing">Id Movement Outgoing</label>
+                    <select class="form-control" id="field_idMovementOutgoing" name="idMovementOutgoing" [(ngModel)]="activeDebts.idMovementOutgoingId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="movementesOutgoingsOption.id" *ngFor="let movementesOutgoingsOption of idmovementoutgoings; trackBy: trackMovementesOutgoingsById">{{movementesOutgoingsOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

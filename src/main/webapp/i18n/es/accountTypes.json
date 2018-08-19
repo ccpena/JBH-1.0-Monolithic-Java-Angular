@@ -1,0 +1,23 @@
+
+{
+    "jbhApp": {
+        "accountTypes" : {
+            "home": {
+                "title": "Account Types",
+                "createLabel": "Crear nuevo Account Types",
+                "createOrEditLabel": "Crear o editar Account Types"
+            },
+            "created": "Un nuevo Account Types ha sido creado con el identificador {{ param }}",
+            "updated": "Un Account Types ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Account Types ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Account Types {{ id }}?"
+            },
+            "detail": {
+                "title": "Account Types"
+            },
+            "description": "Description",
+            "definedByJBH": "Defined By JBH"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+
+{
+    "jbhApp": {
+        "usersGroup" : {
+            "home": {
+                "title": "Users Groups",
+                "createLabel": "Crear nuevo Users Group",
+                "createOrEditLabel": "Crear o editar Users Group"
+            },
+            "created": "Un nuevo Users Group ha sido creado con el identificador {{ param }}",
+            "updated": "Un Users Group ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Users Group ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Users Group {{ id }}?"
+            },
+            "detail": {
+                "title": "Users Group"
+            },
+            "name": "Name"
+        }
+    }
+}

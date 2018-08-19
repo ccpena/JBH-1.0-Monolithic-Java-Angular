@@ -1,0 +1,27 @@
+
+{
+    "jbhApp": {
+        "activeDebts" : {
+            "home": {
+                "title": "Active Debts",
+                "createLabel": "Create a new Active Debts",
+                "createOrEditLabel": "Create or edit a Active Debts"
+            },
+            "created": "A new Active Debts is created with identifier {{ param }}",
+            "updated": "A Active Debts is updated with identifier {{ param }}",
+            "deleted": "A Active Debts is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Active Debts {{ id }}?"
+            },
+            "detail": {
+                "title": "Active Debts"
+            },
+            "value": "Value",
+            "createDate": "Create Date",
+            "idDebtor": "Id Debtor",
+            "idCreditor": "Id Creditor",
+            "idSubCategory": "Id Sub Category",
+            "idMovementOutgoing": "Id Movement Outgoing"
+        }
+    }
+}

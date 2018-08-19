@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="membersGroup">
+            <h2><span jhiTranslate="jbhApp.membersGroup.detail.title">Members Group</span> {{membersGroup.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.membersGroup.invitationAccepted">Invitation Accepted</span></dt>
+                <dd>
+                    <span>{{membersGroup.invitationAccepted}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.membersGroup.idUserGroup">Id User Group</span></dt>
+                <dd>
+                    <div *ngIf="membersGroup.idUserGroupId">
+                        <a [routerLink]="['/users-group-jbh', membersGroup.idUserGroupId, 'view']">{{membersGroup.idUserGroupId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.membersGroup.idUserOwner">Id User Owner</span></dt>
+                <dd>
+                    {{membersGroup.idUserOwnerId}}
+                </dd>
+                <dt><span jhiTranslate="jbhApp.membersGroup.idUserInvited">Id User Invited</span></dt>
+                <dd>
+                    {{membersGroup.idUserInvitedId}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/members-group-jbh', membersGroup.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

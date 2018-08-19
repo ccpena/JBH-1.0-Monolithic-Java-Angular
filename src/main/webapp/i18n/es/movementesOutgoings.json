@@ -1,0 +1,26 @@
+
+{
+    "jbhApp": {
+        "movementesOutgoings" : {
+            "home": {
+                "title": "Movementes Outgoings",
+                "createLabel": "Crear nuevo Movementes Outgoings",
+                "createOrEditLabel": "Crear o editar Movementes Outgoings"
+            },
+            "created": "Un nuevo Movementes Outgoings ha sido creado con el identificador {{ param }}",
+            "updated": "Un Movementes Outgoings ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Movementes Outgoings ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Movementes Outgoings {{ id }}?"
+            },
+            "detail": {
+                "title": "Movementes Outgoings"
+            },
+            "totalValue": "Total Value",
+            "createDate": "Create Date",
+            "idUserGroup": "Id User Group",
+            "idSubCategory": "Id Sub Category",
+            "paymentMethod": "Payment Method"
+        }
+    }
+}

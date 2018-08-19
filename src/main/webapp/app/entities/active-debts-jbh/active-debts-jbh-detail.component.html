@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="activeDebts">
+            <h2><span jhiTranslate="jbhApp.activeDebts.detail.title">Active Debts</span> {{activeDebts.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.activeDebts.value">Value</span></dt>
+                <dd>
+                    <span>{{activeDebts.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.activeDebts.createDate">Create Date</span></dt>
+                <dd>
+                    <span>{{activeDebts.createDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.activeDebts.idDebtor">Id Debtor</span></dt>
+                <dd>
+                    <div *ngIf="activeDebts.idDebtorId">
+                        <a [routerLink]="['/users-group-jbh', activeDebts.idDebtorId, 'view']">{{activeDebts.idDebtorId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.activeDebts.idCreditor">Id Creditor</span></dt>
+                <dd>
+                    <div *ngIf="activeDebts.idCreditorId">
+                        <a [routerLink]="['/users-group-jbh', activeDebts.idCreditorId, 'view']">{{activeDebts.idCreditorId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.activeDebts.idSubCategory">Id Sub Category</span></dt>
+                <dd>
+                    <div *ngIf="activeDebts.idSubCategoryId">
+                        <a [routerLink]="['/sub-categories-jbh', activeDebts.idSubCategoryId, 'view']">{{activeDebts.idSubCategoryId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.activeDebts.idMovementOutgoing">Id Movement Outgoing</span></dt>
+                <dd>
+                    <div *ngIf="activeDebts.idMovementOutgoingId">
+                        <a [routerLink]="['/movementes-outgoings-jbh', activeDebts.idMovementOutgoingId, 'view']">{{activeDebts.idMovementOutgoingId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/active-debts-jbh', activeDebts.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

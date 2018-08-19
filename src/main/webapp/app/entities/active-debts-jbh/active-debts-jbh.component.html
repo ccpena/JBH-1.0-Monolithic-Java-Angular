@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="jbhApp.activeDebts.home.title">Active Debts</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-active-debts-jbh" [routerLink]="['/active-debts-jbh/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="jbhApp.activeDebts.home.createLabel">
+            Create new Active Debts
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="activeDebts">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.value">Value</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.createDate">Create Date</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.idDebtor">Id Debtor</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.idCreditor">Id Creditor</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.idSubCategory">Id Sub Category</span></th>
+            <th><span jhiTranslate="jbhApp.activeDebts.idMovementOutgoing">Id Movement Outgoing</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let activeDebts of activeDebts ;trackBy: trackId">
+                <td><a [routerLink]="['/active-debts-jbh', activeDebts.id, 'view' ]">{{activeDebts.id}}</a></td>
+                <td>{{activeDebts.value}}</td>
+                <td>{{activeDebts.createDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="activeDebts.idDebtorId">
+                        <a [routerLink]="['../users-group-jbh', activeDebts.idDebtorId , 'view' ]" >{{activeDebts.idDebtorId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="activeDebts.idCreditorId">
+                        <a [routerLink]="['../users-group-jbh', activeDebts.idCreditorId , 'view' ]" >{{activeDebts.idCreditorId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="activeDebts.idSubCategoryId">
+                        <a [routerLink]="['../sub-categories-jbh', activeDebts.idSubCategoryId , 'view' ]" >{{activeDebts.idSubCategoryId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="activeDebts.idMovementOutgoingId">
+                        <a [routerLink]="['../movementes-outgoings-jbh', activeDebts.idMovementOutgoingId , 'view' ]" >{{activeDebts.idMovementOutgoingId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/active-debts-jbh', activeDebts.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/active-debts-jbh', activeDebts.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'active-debts-jbh/'+ activeDebts.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

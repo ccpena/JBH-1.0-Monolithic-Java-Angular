@@ -1,0 +1,32 @@
+{
+    "name": "Accounts",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "type",
+            "otherEntityName": "accountTypes",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "accounts"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idUsrGroup",
+            "otherEntityName": "usersGroup",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "accounts"
+        }
+    ],
+    "changelogDate": "20180819154828",
+    "entityTableName": "accounts",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "JBH"
+}

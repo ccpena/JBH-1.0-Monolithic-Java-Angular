@@ -1,0 +1,26 @@
+
+{
+    "jbhApp": {
+        "categories" : {
+            "home": {
+                "title": "Categories",
+                "createLabel": "Crear nuevo Categories",
+                "createOrEditLabel": "Crear o editar Categories"
+            },
+            "created": "Un nuevo Categories ha sido creado con el identificador {{ param }}",
+            "updated": "Un Categories ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Categories ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Categories {{ id }}?"
+            },
+            "detail": {
+                "title": "Categories"
+            },
+            "name": "Name",
+            "definedByJBH": "Defined By JBH",
+            "creationDate": "Creation Date",
+            "subCategory": "Sub Category",
+            "userGroupCategories": "User Group Categories"
+        }
+    }
+}

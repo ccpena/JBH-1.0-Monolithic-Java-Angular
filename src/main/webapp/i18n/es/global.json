@@ -7,6 +7,15 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "categoriesJbh": "Categories",
+                "subCategoriesJbh": "Sub Categories",
+                "usersGroupJbh": "Users Group",
+                "userGroupCategoriesJbh": "User Group Categories",
+                "membersGroupJbh": "Members Group",
+                "accountsJbh": "Accounts",
+                "accountTypesJbh": "Account Types",
+                "movementesOutgoingsJbh": "Movementes Outgoings",
+                "activeDebtsJbh": "Active Debts",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
