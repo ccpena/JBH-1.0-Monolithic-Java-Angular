@@ -223,7 +223,7 @@ public class ActiveDebtsResourceIntTest {
         // Create the ActiveDebts
         ActiveDebtsDTO activeDebtsDTO = activeDebtsMapper.toDto(activeDebts);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restActiveDebtsMockMvc.perform(put("/api/active-debts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(activeDebtsDTO)))

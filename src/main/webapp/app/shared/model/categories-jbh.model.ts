@@ -19,6 +19,6 @@ export class CategoriesJbh implements ICategoriesJbh {
         public subCategories?: ISubCategoriesJbh[],
         public userGroupCategoriesId?: number
     ) {
-        this.definedByJBH = false;
+        this.definedByJBH = this.definedByJBH || false;
     }
 }

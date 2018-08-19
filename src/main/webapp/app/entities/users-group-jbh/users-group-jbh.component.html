@@ -16,6 +16,9 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="jbhApp.usersGroup.name">Name</span></th>
+            <th><span jhiTranslate="jbhApp.usersGroup.invitationAccepted">Invitation Accepted</span></th>
+            <th><span jhiTranslate="jbhApp.usersGroup.idUserOwner">Id User Owner</span></th>
+            <th><span jhiTranslate="jbhApp.usersGroup.idUserInvited">Id User Invited</span></th>
             <th></th>
             </tr>
             </thead>
@@ -23,6 +26,13 @@
             <tr *ngFor="let usersGroup of usersGroups ;trackBy: trackId">
                 <td><a [routerLink]="['/users-group-jbh', usersGroup.id, 'view' ]">{{usersGroup.id}}</a></td>
                 <td>{{usersGroup.name}}</td>
+                <td>{{usersGroup.invitationAccepted}}</td>
+                <td>
+                    {{usersGroup.idUserOwnerId}}
+                </td>
+                <td>
+                    {{usersGroup.idUserInvitedId}}
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

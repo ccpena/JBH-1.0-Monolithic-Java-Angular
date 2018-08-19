@@ -223,7 +223,7 @@ public class MovementesOutgoingsResourceIntTest {
         // Create the MovementesOutgoings
         MovementesOutgoingsDTO movementesOutgoingsDTO = movementesOutgoingsMapper.toDto(movementesOutgoings);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
+        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
         restMovementesOutgoingsMockMvc.perform(put("/api/movementes-outgoings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(movementesOutgoingsDTO)))

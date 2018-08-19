@@ -1,14 +1,14 @@
-import { element, by, promise, ElementFinder } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 
 export class UserGroupCategoriesComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-user-group-categories-jbh div h2#page-heading span')).first();
 
-    clickOnCreateButton(): promise.Promise<void> {
-        return this.createButton.click();
+    async clickOnCreateButton() {
+        await this.createButton.click();
     }
 
-    getTitle(): any {
+    async getTitle() {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -19,35 +19,35 @@ export class UserGroupCategoriesUpdatePage {
     cancelButton = element(by.id('cancel-save'));
     idUserGroupSelect = element(by.id('field_idUserGroup'));
 
-    getPageTitle() {
+    async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    idUserGroupSelectLastOption(): promise.Promise<void> {
-        return this.idUserGroupSelect
+    async idUserGroupSelectLastOption() {
+        await this.idUserGroupSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idUserGroupSelectOption(option): promise.Promise<void> {
-        return this.idUserGroupSelect.sendKeys(option);
+    async idUserGroupSelectOption(option) {
+        await this.idUserGroupSelect.sendKeys(option);
     }
 
     getIdUserGroupSelect(): ElementFinder {
         return this.idUserGroupSelect;
     }
 
-    getIdUserGroupSelectedOption() {
+    async getIdUserGroupSelectedOption() {
         return this.idUserGroupSelect.element(by.css('option:checked')).getText();
     }
 
-    save(): promise.Promise<void> {
-        return this.saveButton.click();
+    async save() {
+        await this.saveButton.click();
     }
 
-    cancel(): promise.Promise<void> {
-        return this.cancelButton.click();
+    async cancel() {
+        await this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

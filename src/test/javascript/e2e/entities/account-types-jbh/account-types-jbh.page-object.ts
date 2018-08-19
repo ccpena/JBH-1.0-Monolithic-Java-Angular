@@ -1,14 +1,14 @@
-import { element, by, promise, ElementFinder } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 
 export class AccountTypesComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-account-types-jbh div h2#page-heading span')).first();
 
-    clickOnCreateButton(): promise.Promise<void> {
-        return this.createButton.click();
+    async clickOnCreateButton() {
+        await this.createButton.click();
     }
 
-    getTitle(): any {
+    async getTitle() {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -20,27 +20,27 @@ export class AccountTypesUpdatePage {
     descriptionInput = element(by.id('field_description'));
     definedByJBHInput = element(by.id('field_definedByJBH'));
 
-    getPageTitle() {
+    async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    setDescriptionInput(description): promise.Promise<void> {
-        return this.descriptionInput.sendKeys(description);
+    async setDescriptionInput(description) {
+        await this.descriptionInput.sendKeys(description);
     }
 
-    getDescriptionInput() {
+    async getDescriptionInput() {
         return this.descriptionInput.getAttribute('value');
     }
 
     getDefinedByJBHInput() {
         return this.definedByJBHInput;
     }
-    save(): promise.Promise<void> {
-        return this.saveButton.click();
+    async save() {
+        await this.saveButton.click();
     }
 
-    cancel(): promise.Promise<void> {
-        return this.cancelButton.click();
+    async cancel() {
+        await this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

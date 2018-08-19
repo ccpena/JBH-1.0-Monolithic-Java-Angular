@@ -6,6 +6,6 @@ export interface IAccountTypesJbh {
 
 export class AccountTypesJbh implements IAccountTypesJbh {
     constructor(public id?: number, public description?: string, public definedByJBH?: boolean) {
-        this.definedByJBH = false;
+        this.definedByJBH = this.definedByJBH || false;
     }
 }

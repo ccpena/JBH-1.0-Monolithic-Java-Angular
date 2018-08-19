@@ -1,14 +1,14 @@
-import { element, by, promise, ElementFinder } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 
 export class MovementesOutgoingsComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-movementes-outgoings-jbh div h2#page-heading span')).first();
 
-    clickOnCreateButton(): promise.Promise<void> {
-        return this.createButton.click();
+    async clickOnCreateButton() {
+        await this.createButton.click();
     }
 
-    getTitle(): any {
+    async getTitle() {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -23,89 +23,89 @@ export class MovementesOutgoingsUpdatePage {
     idSubCategorySelect = element(by.id('field_idSubCategory'));
     paymentMethodSelect = element(by.id('field_paymentMethod'));
 
-    getPageTitle() {
+    async getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    setTotalValueInput(totalValue): promise.Promise<void> {
-        return this.totalValueInput.sendKeys(totalValue);
+    async setTotalValueInput(totalValue) {
+        await this.totalValueInput.sendKeys(totalValue);
     }
 
-    getTotalValueInput() {
+    async getTotalValueInput() {
         return this.totalValueInput.getAttribute('value');
     }
 
-    setCreateDateInput(createDate): promise.Promise<void> {
-        return this.createDateInput.sendKeys(createDate);
+    async setCreateDateInput(createDate) {
+        await this.createDateInput.sendKeys(createDate);
     }
 
-    getCreateDateInput() {
+    async getCreateDateInput() {
         return this.createDateInput.getAttribute('value');
     }
 
-    idUserGroupSelectLastOption(): promise.Promise<void> {
-        return this.idUserGroupSelect
+    async idUserGroupSelectLastOption() {
+        await this.idUserGroupSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idUserGroupSelectOption(option): promise.Promise<void> {
-        return this.idUserGroupSelect.sendKeys(option);
+    async idUserGroupSelectOption(option) {
+        await this.idUserGroupSelect.sendKeys(option);
     }
 
     getIdUserGroupSelect(): ElementFinder {
         return this.idUserGroupSelect;
     }
 
-    getIdUserGroupSelectedOption() {
+    async getIdUserGroupSelectedOption() {
         return this.idUserGroupSelect.element(by.css('option:checked')).getText();
     }
 
-    idSubCategorySelectLastOption(): promise.Promise<void> {
-        return this.idSubCategorySelect
+    async idSubCategorySelectLastOption() {
+        await this.idSubCategorySelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    idSubCategorySelectOption(option): promise.Promise<void> {
-        return this.idSubCategorySelect.sendKeys(option);
+    async idSubCategorySelectOption(option) {
+        await this.idSubCategorySelect.sendKeys(option);
     }
 
     getIdSubCategorySelect(): ElementFinder {
         return this.idSubCategorySelect;
     }
 
-    getIdSubCategorySelectedOption() {
+    async getIdSubCategorySelectedOption() {
         return this.idSubCategorySelect.element(by.css('option:checked')).getText();
     }
 
-    paymentMethodSelectLastOption(): promise.Promise<void> {
-        return this.paymentMethodSelect
+    async paymentMethodSelectLastOption() {
+        await this.paymentMethodSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    paymentMethodSelectOption(option): promise.Promise<void> {
-        return this.paymentMethodSelect.sendKeys(option);
+    async paymentMethodSelectOption(option) {
+        await this.paymentMethodSelect.sendKeys(option);
     }
 
     getPaymentMethodSelect(): ElementFinder {
         return this.paymentMethodSelect;
     }
 
-    getPaymentMethodSelectedOption() {
+    async getPaymentMethodSelectedOption() {
         return this.paymentMethodSelect.element(by.css('option:checked')).getText();
     }
 
-    save(): promise.Promise<void> {
-        return this.saveButton.click();
+    async save() {
+        await this.saveButton.click();
     }
 
-    cancel(): promise.Promise<void> {
-        return this.cancelButton.click();
+    async cancel() {
+        await this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

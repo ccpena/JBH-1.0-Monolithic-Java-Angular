@@ -4,9 +4,30 @@
         {
             "fieldName": "name",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "invitationAccepted",
+            "fieldType": "Boolean"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idUserOwner",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "usersGroup"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "idUserInvited",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "usersGroup"
+        }
+    ],
     "changelogDate": "20180819154825",
     "entityTableName": "users_group",
     "dto": "mapstruct",

@@ -25,6 +25,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="invitation_accepted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="id_user_owner_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_users_group_id_user_owner_id" />
+            </column>            <column name="id_user_invited_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_users_group_id_user_invited_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

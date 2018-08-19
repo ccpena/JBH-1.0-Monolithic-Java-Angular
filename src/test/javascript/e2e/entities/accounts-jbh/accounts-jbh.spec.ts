@@ -1,42 +1,44 @@
-import { browser } from 'protractor';
-import { NavBarPage } from './../../page-objects/jhi-page-objects';
+import { browser, ExpectedConditions as ec } from 'protractor';
+import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
+
 import { AccountsComponentsPage, AccountsUpdatePage } from './accounts-jbh.page-object';
 
 describe('Accounts e2e test', () => {
     let navBarPage: NavBarPage;
+    let signInPage: SignInPage;
     let accountsUpdatePage: AccountsUpdatePage;
     let accountsComponentsPage: AccountsComponentsPage;
 
-    beforeAll(() => {
-        browser.get('/');
-        browser.waitForAngular();
+    beforeAll(async () => {
+        await browser.get('/');
         navBarPage = new NavBarPage();
-        navBarPage.getSignInPage().loginWithOAuth('admin', 'admin');
-        browser.waitForAngular();
+        signInPage = await navBarPage.getSignInPage();
+        await signInPage.loginWithOAuth('admin', 'admin');
+        await browser.wait(ec.visibilityOf(navBarPage.entityMenu), 5000);
     });
 
-    it('should load Accounts', () => {
-        navBarPage.goToEntity('accounts-jbh');
+    it('should load Accounts', async () => {
+        await navBarPage.goToEntity('accounts-jbh');
         accountsComponentsPage = new AccountsComponentsPage();
-        expect(accountsComponentsPage.getTitle()).toMatch(/jbhApp.accounts.home.title/);
+        expect(await accountsComponentsPage.getTitle()).toMatch(/jbhApp.accounts.home.title/);
     });
 
-    it('should load create Accounts page', () => {
-        accountsComponentsPage.clickOnCreateButton();
+    it('should load create Accounts page', async () => {
+        await accountsComponentsPage.clickOnCreateButton();
         accountsUpdatePage = new AccountsUpdatePage();
-        expect(accountsUpdatePage.getPageTitle()).toMatch(/jbhApp.accounts.home.createOrEditLabel/);
-        accountsUpdatePage.cancel();
+        expect(await accountsUpdatePage.getPageTitle()).toMatch(/jbhApp.accounts.home.createOrEditLabel/);
+        await accountsUpdatePage.cancel();
     });
 
-    it('should create and save Accounts', () => {
-        accountsComponentsPage.clickOnCreateButton();
-        accountsUpdatePage.typeSelectLastOption();
-        accountsUpdatePage.idUsrGroupSelectLastOption();
-        accountsUpdatePage.save();
-        expect(accountsUpdatePage.getSaveButton().isPresent()).toBeFalsy();
+    it('should create and save Accounts', async () => {
+        await accountsComponentsPage.clickOnCreateButton();
+        await accountsUpdatePage.typeSelectLastOption();
+        await accountsUpdatePage.idUsrGroupSelectLastOption();
+        await accountsUpdatePage.save();
+        expect(await accountsUpdatePage.getSaveButton().isPresent()).toBeFalsy();
     });
 
-    afterAll(() => {
-        navBarPage.autoSignOut();
+    afterAll(async () => {
+        await navBarPage.autoSignOut();
     });
 });
