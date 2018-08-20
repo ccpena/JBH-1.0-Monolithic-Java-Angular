@@ -96,6 +96,7 @@ public class UsersGroupResourceIntTest {
   public static UsersGroup createEntity(EntityManager em) {
     UsersGroup usersGroup =
         new UsersGroup().name(DEFAULT_NAME).invitationAccepted(DEFAULT_INVITATION_ACCEPTED);
+
     return usersGroup;
   }
 
