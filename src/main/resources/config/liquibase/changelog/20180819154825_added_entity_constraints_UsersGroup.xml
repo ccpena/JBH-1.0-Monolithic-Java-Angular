@@ -12,13 +12,13 @@
                                  baseTableName="users_group"
                                  constraintName="fk_users_group_id_user_owner_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="jbh_user"/>
 
         <addForeignKeyConstraint baseColumnNames="id_user_invited_id"
                                  baseTableName="users_group"
                                  constraintName="fk_users_group_id_user_invited_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
+                                 referencedTableName="jbh_user"/>
 
     </changeSet>
 </databaseChangeLog>

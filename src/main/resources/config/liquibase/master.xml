@@ -9,7 +9,6 @@
     <include file="config/liquibase/changelog/20180819154824_added_entity_SubCategories.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154825_added_entity_UsersGroup.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154826_added_entity_UserGroupCategories.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20180819154827_added_entity_MembersGroup.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154828_added_entity_Accounts.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154829_added_entity_AccountTypes.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154830_added_entity_MovementesOutgoings.xml" relativeToChangelogFile="false"/>
@@ -23,7 +22,6 @@
     <include file="config/liquibase/changelog/20180819154831_added_entity_constraints_ActiveDebts.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180819154825_added_entity_constraints_UsersGroup.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <include file="config/liquibase/changelog/20180819154827_added_entity_constraints_MembersGroup.xml" relativeToChangelogFile="false"/>
     
     <include file="config/liquibase/changelog/20180819160301_database_line.xml" relativeToChangelogFile="false"/>
         

@@ -4,7 +4,6 @@ import { JbhCategoriesJbhModule } from './categories-jbh/categories-jbh.module';
 import { JbhSubCategoriesJbhModule } from './sub-categories-jbh/sub-categories-jbh.module';
 import { JbhUsersGroupJbhModule } from './users-group-jbh/users-group-jbh.module';
 import { JbhUserGroupCategoriesJbhModule } from './user-group-categories-jbh/user-group-categories-jbh.module';
-import { JbhMembersGroupJbhModule } from './members-group-jbh/members-group-jbh.module';
 import { JbhAccountsJbhModule } from './accounts-jbh/accounts-jbh.module';
 import { JbhAccountTypesJbhModule } from './account-types-jbh/account-types-jbh.module';
 import { JbhMovementesOutgoingsJbhModule } from './movementes-outgoings-jbh/movementes-outgoings-jbh.module';
@@ -18,7 +17,6 @@ import { JbhActiveDebtsJbhModule } from './active-debts-jbh/active-debts-jbh.mod
         JbhSubCategoriesJbhModule,
         JbhUsersGroupJbhModule,
         JbhUserGroupCategoriesJbhModule,
-        JbhMembersGroupJbhModule,
         JbhAccountsJbhModule,
         JbhAccountTypesJbhModule,
         JbhMovementesOutgoingsJbhModule,
