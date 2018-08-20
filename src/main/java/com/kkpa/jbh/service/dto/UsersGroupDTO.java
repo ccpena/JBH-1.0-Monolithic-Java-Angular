@@ -6,87 +6,86 @@ import java.util.Objects;
 /**
  * A DTO for the UsersGroup entity.
  */
+
 public class UsersGroupDTO implements Serializable {
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private Boolean invitationAccepted;
+  private Boolean invitationAccepted;
 
-    private Long idUserOwnerId;
+  private String idUserOwnerId;
 
-    private Long idUserInvitedId;
+  private String idUserInvitedId;
 
-    public Long getId() {
-        return id;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    UsersGroupDTO usersGroupDTO = (UsersGroupDTO) o;
+    if (usersGroupDTO.getId() == null || getId() == null) {
+      return false;
     }
+    return Objects.equals(getId(), usersGroupDTO.getId());
+  }
 
-    public String getName() {
-        return name;
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(getId());
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  @Override
+  public String toString() {
+    return "UsersGroupDTO{" + "id=" + getId() + ", name='" + getName() + "'"
+        + ", invitationAccepted='" + getInvitationAccepted() + "'" + ", idUserOwner="
+        + getIdUserOwnerId() + ", idUserInvited=" + getIdUserInvitedId() + "}";
+  }
 
-    public Boolean isInvitationAccepted() {
-        return invitationAccepted;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setInvitationAccepted(Boolean invitationAccepted) {
-        this.invitationAccepted = invitationAccepted;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public Long getIdUserOwnerId() {
-        return idUserOwnerId;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setIdUserOwnerId(Long userId) {
-        this.idUserOwnerId = userId;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Long getIdUserInvitedId() {
-        return idUserInvitedId;
-    }
+  public Boolean getInvitationAccepted() {
+    return invitationAccepted;
+  }
 
-    public void setIdUserInvitedId(Long userId) {
-        this.idUserInvitedId = userId;
-    }
+  public void setInvitationAccepted(Boolean invitationAccepted) {
+    this.invitationAccepted = invitationAccepted;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+  public String getIdUserOwnerId() {
+    return idUserOwnerId;
+  }
 
-        UsersGroupDTO usersGroupDTO = (UsersGroupDTO) o;
-        if (usersGroupDTO.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), usersGroupDTO.getId());
-    }
+  public void setIdUserOwnerId(String idUserOwnerId) {
+    this.idUserOwnerId = idUserOwnerId;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getId());
-    }
+  public String getIdUserInvitedId() {
+    return idUserInvitedId;
+  }
 
-    @Override
-    public String toString() {
-        return "UsersGroupDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", invitationAccepted='" + isInvitationAccepted() + "'" +
-            ", idUserOwner=" + getIdUserOwnerId() +
-            ", idUserInvited=" + getIdUserInvitedId() +
-            "}";
-    }
+  public void setIdUserInvitedId(String idUserInvitedId) {
+    this.idUserInvitedId = idUserInvitedId;
+  }
+
+
 }
