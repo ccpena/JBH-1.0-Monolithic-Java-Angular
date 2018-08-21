@@ -14,13 +14,13 @@ public class MovementesOutgoingsDTO implements Serializable {
 
     private BigDecimal totalValue;
 
-    private LocalDate createDate;
+    private LocalDate createdAt;
 
-    private Long idUserGroupId;
+    private LocalDate updatedAt;
 
-    private Long idSubCategoryId;
+    private Long userGroupAccountId;
 
-    private Long paymentMethodId;
+    private Long subCategoryId;
 
     public Long getId() {
         return id;
@@ -38,36 +38,36 @@ public class MovementesOutgoingsDTO implements Serializable {
         this.totalValue = totalValue;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getIdUserGroupId() {
-        return idUserGroupId;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setIdUserGroupId(Long usersGroupId) {
-        this.idUserGroupId = usersGroupId;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Long getIdSubCategoryId() {
-        return idSubCategoryId;
+    public Long getUserGroupAccountId() {
+        return userGroupAccountId;
     }
 
-    public void setIdSubCategoryId(Long subCategoriesId) {
-        this.idSubCategoryId = subCategoriesId;
+    public void setUserGroupAccountId(Long userGroupAccountId) {
+        this.userGroupAccountId = userGroupAccountId;
     }
 
-    public Long getPaymentMethodId() {
-        return paymentMethodId;
+    public Long getSubCategoryId() {
+        return subCategoryId;
     }
 
-    public void setPaymentMethodId(Long accountsId) {
-        this.paymentMethodId = accountsId;
+    public void setSubCategoryId(Long subCategoriesId) {
+        this.subCategoryId = subCategoriesId;
     }
 
     @Override
@@ -96,10 +96,10 @@ public class MovementesOutgoingsDTO implements Serializable {
         return "MovementesOutgoingsDTO{" +
             "id=" + getId() +
             ", totalValue=" + getTotalValue() +
-            ", createDate='" + getCreateDate() + "'" +
-            ", idUserGroup=" + getIdUserGroupId() +
-            ", idSubCategory=" + getIdSubCategoryId() +
-            ", paymentMethod=" + getPaymentMethodId() +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", userGroupAccount=" + getUserGroupAccountId() +
+            ", subCategory=" + getSubCategoryId() +
             "}";
     }
 }

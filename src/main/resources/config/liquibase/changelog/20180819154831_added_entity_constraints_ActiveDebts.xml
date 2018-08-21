@@ -8,27 +8,27 @@
     -->
     <changeSet id="20180819154831-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="id_debtor_id"
+        <addForeignKeyConstraint baseColumnNames="debtor_id"
                                  baseTableName="active_debts"
-                                 constraintName="fk_active_debts_id_debtor_id"
+                                 constraintName="fk_active_debts_debtor_id"
                                  referencedColumnNames="id"
                                  referencedTableName="users_group"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_creditor_id"
+        <addForeignKeyConstraint baseColumnNames="creditor_id"
                                  baseTableName="active_debts"
-                                 constraintName="fk_active_debts_id_creditor_id"
+                                 constraintName="fk_active_debts_creditor_id"
                                  referencedColumnNames="id"
                                  referencedTableName="users_group"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_sub_category_id"
+        <addForeignKeyConstraint baseColumnNames="sub_category_id"
                                  baseTableName="active_debts"
-                                 constraintName="fk_active_debts_id_sub_category_id"
+                                 constraintName="fk_active_debts_sub_category_id"
                                  referencedColumnNames="id"
                                  referencedTableName="sub_categories"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_movement_outgoing_id"
+        <addForeignKeyConstraint baseColumnNames="movement_outgoing_id"
                                  baseTableName="active_debts"
-                                 constraintName="fk_active_debts_id_movement_outgoing_id"
+                                 constraintName="fk_active_debts_movement_outgoing_id"
                                  referencedColumnNames="id"
                                  referencedTableName="movementes_outgoings"/>
 

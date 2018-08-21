@@ -1,14 +1,14 @@
-import { element, by, ElementFinder } from 'protractor';
+import { element, by, promise, ElementFinder } from 'protractor';
 
 export class UserGroupCategoriesComponentsPage {
     createButton = element(by.id('jh-create-entity'));
     title = element.all(by.css('jhi-user-group-categories-jbh div h2#page-heading span')).first();
 
-    async clickOnCreateButton() {
-        await this.createButton.click();
+    clickOnCreateButton(): promise.Promise<void> {
+        return this.createButton.click();
     }
 
-    async getTitle() {
+    getTitle(): any {
         return this.title.getAttribute('jhiTranslate');
     }
 }
@@ -17,37 +17,66 @@ export class UserGroupCategoriesUpdatePage {
     pageTitle = element(by.id('jhi-user-group-categories-jbh-heading'));
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
+    nameInput = element(by.id('field_name'));
+    categoriesSelect = element(by.id('field_categories'));
     idUserGroupSelect = element(by.id('field_idUserGroup'));
 
-    async getPageTitle() {
+    getPageTitle() {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    async idUserGroupSelectLastOption() {
-        await this.idUserGroupSelect
+    setNameInput(name): promise.Promise<void> {
+        return this.nameInput.sendKeys(name);
+    }
+
+    getNameInput() {
+        return this.nameInput.getAttribute('value');
+    }
+
+    categoriesSelectLastOption(): promise.Promise<void> {
+        return this.categoriesSelect
             .all(by.tagName('option'))
             .last()
             .click();
     }
 
-    async idUserGroupSelectOption(option) {
-        await this.idUserGroupSelect.sendKeys(option);
+    categoriesSelectOption(option): promise.Promise<void> {
+        return this.categoriesSelect.sendKeys(option);
+    }
+
+    getCategoriesSelect(): ElementFinder {
+        return this.categoriesSelect;
+    }
+
+    getCategoriesSelectedOption() {
+        return this.categoriesSelect.element(by.css('option:checked')).getText();
+    }
+
+    idUserGroupSelectLastOption(): promise.Promise<void> {
+        return this.idUserGroupSelect
+            .all(by.tagName('option'))
+            .last()
+            .click();
+    }
+
+    idUserGroupSelectOption(option): promise.Promise<void> {
+        return this.idUserGroupSelect.sendKeys(option);
     }
 
     getIdUserGroupSelect(): ElementFinder {
         return this.idUserGroupSelect;
     }
 
-    async getIdUserGroupSelectedOption() {
+    getIdUserGroupSelectedOption() {
         return this.idUserGroupSelect.element(by.css('option:checked')).getText();
     }
 
-    async save() {
-        await this.saveButton.click();
+    save(): promise.Promise<void> {
+        return this.saveButton.click();
     }
 
-    async cancel() {
-        await this.cancelButton.click();
+    cancel(): promise.Promise<void> {
+        return this.cancelButton.click();
     }
 
     getSaveButton(): ElementFinder {

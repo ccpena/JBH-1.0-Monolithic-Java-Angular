@@ -21,21 +21,21 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="jhi_value" type="decimal(10,2)">
+            <column name="total_value" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="create_date" type="date">
+            <column name="created_at" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="id_debtor_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_active_debts_id_debtor_id" />
-            </column>            <column name="id_creditor_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_active_debts_id_creditor_id" />
-            </column>            <column name="id_sub_category_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_active_debts_id_sub_category_id" />
-            </column>            <column name="id_movement_outgoing_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_active_debts_id_movement_outgoing_id" />
+            <column name="debtor_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="creditor_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="sub_category_id" type="bigint">
+                <constraints unique="true" nullable="true" />
+            </column>            <column name="movement_outgoing_id" type="bigint">
+                <constraints unique="true" nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

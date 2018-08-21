@@ -17,9 +17,10 @@
                 "title": "Members Group"
             },
             "invitationAccepted": "Invitation Accepted",
-            "idUserGroup": "Id User Group",
-            "idUserOwner": "Id User Owner",
-            "idUserInvited": "Id User Invited"
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "userInvited": "User Invited",
+            "usersGroup": "Users Group"
         }
     }
 }

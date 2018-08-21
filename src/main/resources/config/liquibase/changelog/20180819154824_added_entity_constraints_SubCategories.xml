@@ -8,9 +8,9 @@
     -->
     <changeSet id="20180819154824-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="categories_id"
+        <addForeignKeyConstraint baseColumnNames="category_id"
                                  baseTableName="sub_categories"
-                                 constraintName="fk_sub_categories_categories_id"
+                                 constraintName="fk_sub_categories_category_id"
                                  referencedColumnNames="id"
                                  referencedTableName="categories"/>
 

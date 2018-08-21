@@ -6,6 +6,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IUserGroupCategoriesJbh } from 'app/shared/model/user-group-categories-jbh.model';
 import { UserGroupCategoriesJbhService } from './user-group-categories-jbh.service';
+import { ICategoriesJbh } from 'app/shared/model/categories-jbh.model';
+import { CategoriesJbhService } from 'app/entities/categories-jbh';
 import { IUsersGroupJbh } from 'app/shared/model/users-group-jbh.model';
 import { UsersGroupJbhService } from 'app/entities/users-group-jbh';
 
@@ -17,11 +19,14 @@ export class UserGroupCategoriesJbhUpdateComponent implements OnInit {
     private _userGroupCategories: IUserGroupCategoriesJbh;
     isSaving: boolean;
 
+    categories: ICategoriesJbh[];
+
     idusergroups: IUsersGroupJbh[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private userGroupCategoriesService: UserGroupCategoriesJbhService,
+        private categoriesService: CategoriesJbhService,
         private usersGroupService: UsersGroupJbhService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -31,6 +36,12 @@ export class UserGroupCategoriesJbhUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ userGroupCategories }) => {
             this.userGroupCategories = userGroupCategories;
         });
+        this.categoriesService.query().subscribe(
+            (res: HttpResponse<ICategoriesJbh[]>) => {
+                this.categories = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         this.usersGroupService.query({ filter: 'usergroupcategories-is-null' }).subscribe(
             (res: HttpResponse<IUsersGroupJbh[]>) => {
                 if (!this.userGroupCategories.idUserGroupId) {
@@ -79,6 +90,10 @@ export class UserGroupCategoriesJbhUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackCategoriesById(index: number, item: ICategoriesJbh) {
+        return item.id;
     }
 
     trackUsersGroupById(index: number, item: IUsersGroupJbh) {

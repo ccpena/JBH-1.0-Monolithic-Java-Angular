@@ -28,20 +28,19 @@ public class MovementesOutgoings implements Serializable {
     @Column(name = "total_value", precision = 10, scale = 2)
     private BigDecimal totalValue;
 
-    @Column(name = "create_date")
-    private LocalDate createDate;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private UsersGroup idUserGroup;
+    private UserGroupAccount userGroupAccount;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private SubCategories idSubCategory;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Accounts paymentMethod;
+    private SubCategories subCategory;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -65,56 +64,56 @@ public class MovementesOutgoings implements Serializable {
         this.totalValue = totalValue;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public MovementesOutgoings createDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public MovementesOutgoings createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public UsersGroup getIdUserGroup() {
-        return idUserGroup;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public MovementesOutgoings idUserGroup(UsersGroup usersGroup) {
-        this.idUserGroup = usersGroup;
+    public MovementesOutgoings updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 
-    public void setIdUserGroup(UsersGroup usersGroup) {
-        this.idUserGroup = usersGroup;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public SubCategories getIdSubCategory() {
-        return idSubCategory;
+    public UserGroupAccount getUserGroupAccount() {
+        return userGroupAccount;
     }
 
-    public MovementesOutgoings idSubCategory(SubCategories subCategories) {
-        this.idSubCategory = subCategories;
+    public MovementesOutgoings userGroupAccount(UserGroupAccount userGroupAccount) {
+        this.userGroupAccount = userGroupAccount;
         return this;
     }
 
-    public void setIdSubCategory(SubCategories subCategories) {
-        this.idSubCategory = subCategories;
+    public void setUserGroupAccount(UserGroupAccount userGroupAccount) {
+        this.userGroupAccount = userGroupAccount;
     }
 
-    public Accounts getPaymentMethod() {
-        return paymentMethod;
+    public SubCategories getSubCategory() {
+        return subCategory;
     }
 
-    public MovementesOutgoings paymentMethod(Accounts accounts) {
-        this.paymentMethod = accounts;
+    public MovementesOutgoings subCategory(SubCategories subCategories) {
+        this.subCategory = subCategories;
         return this;
     }
 
-    public void setPaymentMethod(Accounts accounts) {
-        this.paymentMethod = accounts;
+    public void setSubCategory(SubCategories subCategories) {
+        this.subCategory = subCategories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -143,7 +142,8 @@ public class MovementesOutgoings implements Serializable {
         return "MovementesOutgoings{" +
             "id=" + getId() +
             ", totalValue=" + getTotalValue() +
-            ", createDate='" + getCreateDate() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

@@ -1,5 +1,6 @@
 package com.kkpa.jbh.service.dto;
 
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,7 +11,15 @@ public class UserGroupCategoriesDTO implements Serializable {
 
     private Long id;
 
-    private Long idUserGroupId;
+    private String name;
+
+    private LocalDate createdAt;
+
+    private LocalDate updatedAt;
+
+    private Long userGroupId;
+
+    private Long categoryId;
 
     public Long getId() {
         return id;
@@ -20,12 +29,44 @@ public class UserGroupCategoriesDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getIdUserGroupId() {
-        return idUserGroupId;
+    public String getName() {
+        return name;
     }
 
-    public void setIdUserGroupId(Long usersGroupId) {
-        this.idUserGroupId = usersGroupId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getUserGroupId() {
+        return userGroupId;
+    }
+
+    public void setUserGroupId(Long usersGroupId) {
+        this.userGroupId = usersGroupId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoriesId) {
+        this.categoryId = categoriesId;
     }
 
     @Override
@@ -53,7 +94,11 @@ public class UserGroupCategoriesDTO implements Serializable {
     public String toString() {
         return "UserGroupCategoriesDTO{" +
             "id=" + getId() +
-            ", idUserGroup=" + getIdUserGroupId() +
+            ", name='" + getName() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", userGroup=" + getUserGroupId() +
+            ", category=" + getCategoryId() +
             "}";
     }
 }

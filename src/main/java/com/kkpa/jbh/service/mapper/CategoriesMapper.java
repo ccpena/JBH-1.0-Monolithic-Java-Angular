@@ -8,14 +8,11 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Categories and its DTO CategoriesDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserGroupCategoriesMapper.class})
+@Mapper(componentModel = "spring", uses = {})
 public interface CategoriesMapper extends EntityMapper<CategoriesDTO, Categories> {
 
-    @Mapping(source = "userGroupCategories.id", target = "userGroupCategoriesId")
-    CategoriesDTO toDto(Categories categories);
 
     @Mapping(target = "subCategories", ignore = true)
-    @Mapping(source = "userGroupCategoriesId", target = "userGroupCategories")
     Categories toEntity(CategoriesDTO categoriesDTO);
 
     default Categories fromId(Long id) {

@@ -1,5 +1,6 @@
 import { Moment } from 'moment';
 import { ISubCategoriesJbh } from 'app/shared/model//sub-categories-jbh.model';
+import { IUserGroupCategoriesJbh } from 'app/shared/model//user-group-categories-jbh.model';
 
 export interface ICategoriesJbh {
     id?: number;
@@ -7,7 +8,7 @@ export interface ICategoriesJbh {
     definedByJBH?: boolean;
     creationDate?: Moment;
     subCategories?: ISubCategoriesJbh[];
-    userGroupCategoriesId?: number;
+    usrGroupCategories?: IUserGroupCategoriesJbh[];
 }
 
 export class CategoriesJbh implements ICategoriesJbh {
@@ -17,8 +18,8 @@ export class CategoriesJbh implements ICategoriesJbh {
         public definedByJBH?: boolean,
         public creationDate?: Moment,
         public subCategories?: ISubCategoriesJbh[],
-        public userGroupCategoriesId?: number
+        public usrGroupCategories?: IUserGroupCategoriesJbh[]
     ) {
-        this.definedByJBH = this.definedByJBH || false;
+        this.definedByJBH = false;
     }
 }

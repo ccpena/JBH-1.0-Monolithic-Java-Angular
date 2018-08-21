@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { JhiAlertService } from 'ng-jhipster';
 
 import { ICategoriesJbh } from 'app/shared/model/categories-jbh.model';
 import { CategoriesJbhService } from './categories-jbh.service';
-import { IUserGroupCategoriesJbh } from 'app/shared/model/user-group-categories-jbh.model';
-import { UserGroupCategoriesJbhService } from 'app/entities/user-group-categories-jbh';
 
 @Component({
     selector: 'jhi-categories-jbh-update',
@@ -16,28 +13,15 @@ import { UserGroupCategoriesJbhService } from 'app/entities/user-group-categorie
 export class CategoriesJbhUpdateComponent implements OnInit {
     private _categories: ICategoriesJbh;
     isSaving: boolean;
-
-    usergroupcategories: IUserGroupCategoriesJbh[];
     creationDateDp: any;
 
-    constructor(
-        private jhiAlertService: JhiAlertService,
-        private categoriesService: CategoriesJbhService,
-        private userGroupCategoriesService: UserGroupCategoriesJbhService,
-        private activatedRoute: ActivatedRoute
-    ) {}
+    constructor(private categoriesService: CategoriesJbhService, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ categories }) => {
             this.categories = categories;
         });
-        this.userGroupCategoriesService.query().subscribe(
-            (res: HttpResponse<IUserGroupCategoriesJbh[]>) => {
-                this.usergroupcategories = res.body;
-            },
-            (res: HttpErrorResponse) => this.onError(res.message)
-        );
     }
 
     previousState() {
@@ -64,14 +48,6 @@ export class CategoriesJbhUpdateComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(errorMessage: string) {
-        this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackUserGroupCategoriesById(index: number, item: IUserGroupCategoriesJbh) {
-        return item.id;
     }
     get categories() {
         return this._categories;

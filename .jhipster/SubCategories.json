@@ -11,19 +11,23 @@
             "fieldValidateRulesMaxlength": 100
         },
         {
-            "fieldName": "definedByJBH",
+            "fieldName": "byDefault",
             "fieldType": "Boolean"
         },
         {
-            "fieldName": "creationDate",
+            "fieldName": "createdAt",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updatedAt",
             "fieldType": "LocalDate"
         }
     ],
     "relationships": [
         {
-            "relationshipName": "categories",
-            "otherEntityName": "categories",
             "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "categories",
             "otherEntityField": "id"
         }
     ],
@@ -35,6 +39,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

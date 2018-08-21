@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -23,13 +24,18 @@ public class Accounts implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private AccountTypes type;
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private UsersGroup idUsrGroup;
+    private UsersGroup usrGroup;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -40,30 +46,56 @@ public class Accounts implements Serializable {
         this.id = id;
     }
 
-    public AccountTypes getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
 
-    public Accounts type(AccountTypes accountTypes) {
-        this.type = accountTypes;
+    public Accounts description(String description) {
+        this.description = description;
         return this;
     }
 
-    public void setType(AccountTypes accountTypes) {
-        this.type = accountTypes;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public UsersGroup getIdUsrGroup() {
-        return idUsrGroup;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public Accounts idUsrGroup(UsersGroup usersGroup) {
-        this.idUsrGroup = usersGroup;
+    public Accounts createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setIdUsrGroup(UsersGroup usersGroup) {
-        this.idUsrGroup = usersGroup;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Accounts updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public UsersGroup getUsrGroup() {
+        return usrGroup;
+    }
+
+    public Accounts usrGroup(UsersGroup usersGroup) {
+        this.usrGroup = usersGroup;
+        return this;
+    }
+
+    public void setUsrGroup(UsersGroup usersGroup) {
+        this.usrGroup = usersGroup;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -91,6 +123,9 @@ public class Accounts implements Serializable {
     public String toString() {
         return "Accounts{" +
             "id=" + getId() +
+            ", description='" + getDescription() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

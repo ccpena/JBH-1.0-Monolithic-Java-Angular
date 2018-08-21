@@ -17,9 +17,10 @@
                 "title": "Sub Categories"
             },
             "name": "Name",
-            "definedByJBH": "Defined By JBH",
-            "creationDate": "Creation Date",
-            "categories": "Categories"
+            "byDefault": "By Default",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "category": "Category"
         }
     }
 }

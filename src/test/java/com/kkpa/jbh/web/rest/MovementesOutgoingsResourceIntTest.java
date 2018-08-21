@@ -48,8 +48,11 @@ public class MovementesOutgoingsResourceIntTest {
     private static final BigDecimal DEFAULT_TOTAL_VALUE = new BigDecimal(1);
     private static final BigDecimal UPDATED_TOTAL_VALUE = new BigDecimal(2);
 
-    private static final LocalDate DEFAULT_CREATE_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_CREATE_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_CREATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_AT = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_UPDATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_UPDATED_AT = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private MovementesOutgoingsRepository movementesOutgoingsRepository;
@@ -98,7 +101,8 @@ public class MovementesOutgoingsResourceIntTest {
     public static MovementesOutgoings createEntity(EntityManager em) {
         MovementesOutgoings movementesOutgoings = new MovementesOutgoings()
             .totalValue(DEFAULT_TOTAL_VALUE)
-            .createDate(DEFAULT_CREATE_DATE);
+            .createdAt(DEFAULT_CREATED_AT)
+            .updatedAt(DEFAULT_UPDATED_AT);
         return movementesOutgoings;
     }
 
@@ -124,7 +128,8 @@ public class MovementesOutgoingsResourceIntTest {
         assertThat(movementesOutgoingsList).hasSize(databaseSizeBeforeCreate + 1);
         MovementesOutgoings testMovementesOutgoings = movementesOutgoingsList.get(movementesOutgoingsList.size() - 1);
         assertThat(testMovementesOutgoings.getTotalValue()).isEqualTo(DEFAULT_TOTAL_VALUE);
-        assertThat(testMovementesOutgoings.getCreateDate()).isEqualTo(DEFAULT_CREATE_DATE);
+        assertThat(testMovementesOutgoings.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testMovementesOutgoings.getUpdatedAt()).isEqualTo(DEFAULT_UPDATED_AT);
     }
 
     @Test
@@ -159,7 +164,8 @@ public class MovementesOutgoingsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(movementesOutgoings.getId().intValue())))
             .andExpect(jsonPath("$.[*].totalValue").value(hasItem(DEFAULT_TOTAL_VALUE.intValue())))
-            .andExpect(jsonPath("$.[*].createDate").value(hasItem(DEFAULT_CREATE_DATE.toString())));
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+            .andExpect(jsonPath("$.[*].updatedAt").value(hasItem(DEFAULT_UPDATED_AT.toString())));
     }
     
 
@@ -175,7 +181,8 @@ public class MovementesOutgoingsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(movementesOutgoings.getId().intValue()))
             .andExpect(jsonPath("$.totalValue").value(DEFAULT_TOTAL_VALUE.intValue()))
-            .andExpect(jsonPath("$.createDate").value(DEFAULT_CREATE_DATE.toString()));
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+            .andExpect(jsonPath("$.updatedAt").value(DEFAULT_UPDATED_AT.toString()));
     }
     @Test
     @Transactional
@@ -199,7 +206,8 @@ public class MovementesOutgoingsResourceIntTest {
         em.detach(updatedMovementesOutgoings);
         updatedMovementesOutgoings
             .totalValue(UPDATED_TOTAL_VALUE)
-            .createDate(UPDATED_CREATE_DATE);
+            .createdAt(UPDATED_CREATED_AT)
+            .updatedAt(UPDATED_UPDATED_AT);
         MovementesOutgoingsDTO movementesOutgoingsDTO = movementesOutgoingsMapper.toDto(updatedMovementesOutgoings);
 
         restMovementesOutgoingsMockMvc.perform(put("/api/movementes-outgoings")
@@ -212,7 +220,8 @@ public class MovementesOutgoingsResourceIntTest {
         assertThat(movementesOutgoingsList).hasSize(databaseSizeBeforeUpdate);
         MovementesOutgoings testMovementesOutgoings = movementesOutgoingsList.get(movementesOutgoingsList.size() - 1);
         assertThat(testMovementesOutgoings.getTotalValue()).isEqualTo(UPDATED_TOTAL_VALUE);
-        assertThat(testMovementesOutgoings.getCreateDate()).isEqualTo(UPDATED_CREATE_DATE);
+        assertThat(testMovementesOutgoings.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testMovementesOutgoings.getUpdatedAt()).isEqualTo(UPDATED_UPDATED_AT);
     }
 
     @Test
@@ -223,7 +232,7 @@ public class MovementesOutgoingsResourceIntTest {
         // Create the MovementesOutgoings
         MovementesOutgoingsDTO movementesOutgoingsDTO = movementesOutgoingsMapper.toDto(movementesOutgoings);
 
-        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
+        // If the entity doesn't have an ID, it will be created instead of just being updated
         restMovementesOutgoingsMockMvc.perform(put("/api/movementes-outgoings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(movementesOutgoingsDTO)))

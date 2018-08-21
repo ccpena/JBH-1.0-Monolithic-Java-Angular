@@ -1,11 +1,10 @@
-import { ICategoriesJbh } from 'app/shared/model//categories-jbh.model';
-
 export interface IUserGroupCategoriesJbh {
     id?: number;
+    name?: string;
+    categoriesId?: number;
     idUserGroupId?: number;
-    idCategories?: ICategoriesJbh[];
 }
 
 export class UserGroupCategoriesJbh implements IUserGroupCategoriesJbh {
-    constructor(public id?: number, public idUserGroupId?: number, public idCategories?: ICategoriesJbh[]) {}
+    constructor(public id?: number, public name?: string, public categoriesId?: number, public idUserGroupId?: number) {}
 }

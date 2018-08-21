@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 
@@ -41,6 +43,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = JbhApp.class)
 public class UserGroupCategoriesResourceIntTest {
+
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_CREATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_AT = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_UPDATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_UPDATED_AT = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private UserGroupCategoriesRepository userGroupCategoriesRepository;
@@ -87,7 +98,10 @@ public class UserGroupCategoriesResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static UserGroupCategories createEntity(EntityManager em) {
-        UserGroupCategories userGroupCategories = new UserGroupCategories();
+        UserGroupCategories userGroupCategories = new UserGroupCategories()
+            .name(DEFAULT_NAME)
+            .createdAt(DEFAULT_CREATED_AT)
+            .updatedAt(DEFAULT_UPDATED_AT);
         return userGroupCategories;
     }
 
@@ -112,6 +126,9 @@ public class UserGroupCategoriesResourceIntTest {
         List<UserGroupCategories> userGroupCategoriesList = userGroupCategoriesRepository.findAll();
         assertThat(userGroupCategoriesList).hasSize(databaseSizeBeforeCreate + 1);
         UserGroupCategories testUserGroupCategories = userGroupCategoriesList.get(userGroupCategoriesList.size() - 1);
+        assertThat(testUserGroupCategories.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testUserGroupCategories.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testUserGroupCategories.getUpdatedAt()).isEqualTo(DEFAULT_UPDATED_AT);
     }
 
     @Test
@@ -144,7 +161,10 @@ public class UserGroupCategoriesResourceIntTest {
         restUserGroupCategoriesMockMvc.perform(get("/api/user-group-categories?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(userGroupCategories.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(userGroupCategories.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+            .andExpect(jsonPath("$.[*].updatedAt").value(hasItem(DEFAULT_UPDATED_AT.toString())));
     }
     
 
@@ -158,7 +178,10 @@ public class UserGroupCategoriesResourceIntTest {
         restUserGroupCategoriesMockMvc.perform(get("/api/user-group-categories/{id}", userGroupCategories.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(userGroupCategories.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(userGroupCategories.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+            .andExpect(jsonPath("$.updatedAt").value(DEFAULT_UPDATED_AT.toString()));
     }
     @Test
     @Transactional
@@ -180,6 +203,10 @@ public class UserGroupCategoriesResourceIntTest {
         UserGroupCategories updatedUserGroupCategories = userGroupCategoriesRepository.findById(userGroupCategories.getId()).get();
         // Disconnect from session so that the updates on updatedUserGroupCategories are not directly saved in db
         em.detach(updatedUserGroupCategories);
+        updatedUserGroupCategories
+            .name(UPDATED_NAME)
+            .createdAt(UPDATED_CREATED_AT)
+            .updatedAt(UPDATED_UPDATED_AT);
         UserGroupCategoriesDTO userGroupCategoriesDTO = userGroupCategoriesMapper.toDto(updatedUserGroupCategories);
 
         restUserGroupCategoriesMockMvc.perform(put("/api/user-group-categories")
@@ -191,6 +218,9 @@ public class UserGroupCategoriesResourceIntTest {
         List<UserGroupCategories> userGroupCategoriesList = userGroupCategoriesRepository.findAll();
         assertThat(userGroupCategoriesList).hasSize(databaseSizeBeforeUpdate);
         UserGroupCategories testUserGroupCategories = userGroupCategoriesList.get(userGroupCategoriesList.size() - 1);
+        assertThat(testUserGroupCategories.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testUserGroupCategories.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testUserGroupCategories.getUpdatedAt()).isEqualTo(UPDATED_UPDATED_AT);
     }
 
     @Test
@@ -201,7 +231,7 @@ public class UserGroupCategoriesResourceIntTest {
         // Create the UserGroupCategories
         UserGroupCategoriesDTO userGroupCategoriesDTO = userGroupCategoriesMapper.toDto(userGroupCategories);
 
-        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
+        // If the entity doesn't have an ID, it will be created instead of just being updated
         restUserGroupCategoriesMockMvc.perform(put("/api/user-group-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(userGroupCategoriesDTO)))

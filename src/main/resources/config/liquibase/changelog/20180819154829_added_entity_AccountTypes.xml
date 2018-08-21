@@ -25,7 +25,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="defined_by_jbh" type="boolean">
+            <column name="by_default" type="boolean">
                 <constraints nullable="true" />
             </column>
 

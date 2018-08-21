@@ -12,7 +12,7 @@ public class AccountTypesDTO implements Serializable {
 
     private String description;
 
-    private Boolean definedByJBH;
+    private Boolean byDefault;
 
     public Long getId() {
         return id;
@@ -30,12 +30,12 @@ public class AccountTypesDTO implements Serializable {
         this.description = description;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AccountTypesDTO implements Serializable {
         return "AccountTypesDTO{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
+            ", byDefault='" + isByDefault() + "'" +
             "}";
     }
 }

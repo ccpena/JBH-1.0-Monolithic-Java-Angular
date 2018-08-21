@@ -9,7 +9,19 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="userGroupCategories.id" readonly />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.userGroupCategories.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="userGroupCategories.name" />
+                </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jbhApp.userGroupCategories.categories" for="field_categories">Categories</label>
+                    <select class="form-control" id="field_categories" name="categories" [(ngModel)]="userGroupCategories.categoriesId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="categoriesOption.id" *ngFor="let categoriesOption of categories; trackBy: trackCategoriesById">{{categoriesOption.id}}</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="jbhApp.userGroupCategories.idUserGroup" for="field_idUserGroup">Id User Group</label>
                     <select class="form-control" id="field_idUserGroup" name="idUserGroup" [(ngModel)]="userGroupCategories.idUserGroupId">

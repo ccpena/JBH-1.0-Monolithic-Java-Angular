@@ -78,6 +78,66 @@
                             <span jhiTranslate="global.menu.entities.activeDebtsJbh">Active Debts Jbh</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="categories" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.categories">Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="sub-categories" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.subCategories">Sub Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="members-group" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.membersGroup">Members Group</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="users-group" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.usersGroup">Users Group</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="user-group-categories" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.userGroupCategories">User Group Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="accounts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.accounts">Accounts</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="account-types" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.accountTypes">Account Types</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="user-group-account" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.userGroupAccount">User Group Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="movementes-outgoings" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.movementesOutgoings">Movementes Outgoings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="active-debts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.activeDebts">Active Debts</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

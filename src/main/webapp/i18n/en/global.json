@@ -16,6 +16,16 @@
                 "accountTypesJbh": "Account Types",
                 "movementesOutgoingsJbh": "Movementes Outgoings",
                 "activeDebtsJbh": "Active Debts",
+                "categories": "Categories",
+                "subCategories": "Sub Categories",
+                "membersGroup": "Members Group",
+                "usersGroup": "Users Group",
+                "userGroupCategories": "User Group Categories",
+                "accounts": "Accounts",
+                "accountTypes": "Account Types",
+                "userGroupAccount": "User Group Account",
+                "movementesOutgoings": "Movementes Outgoings",
+                "activeDebts": "Active Debts",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

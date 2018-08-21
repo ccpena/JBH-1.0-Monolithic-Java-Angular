@@ -53,6 +53,13 @@ public class CacheConfiguration {
       cm.createCache(com.kkpa.jbh.domain.AccountTypes.class.getName(), jcacheConfiguration);
       cm.createCache(com.kkpa.jbh.domain.MovementesOutgoings.class.getName(), jcacheConfiguration);
       cm.createCache(com.kkpa.jbh.domain.ActiveDebts.class.getName(), jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.Categories.class.getName() + ".subCategories", jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.Categories.class.getName() + ".usrGroupCategories", jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.MembersGroup.class.getName(), jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.MembersGroup.class.getName() + ".members", jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.UsersGroup.class.getName() + ".members", jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.UserGroupCategories.class.getName() + ".categories", jcacheConfiguration);
+      cm.createCache(com.kkpa.jbh.domain.UserGroupAccount.class.getName(), jcacheConfiguration);
       // jhipster-needle-ehcache-add-entry
     };
   }

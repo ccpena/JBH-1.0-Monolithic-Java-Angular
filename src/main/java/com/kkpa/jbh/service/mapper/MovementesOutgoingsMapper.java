@@ -8,17 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity MovementesOutgoings and its DTO MovementesOutgoingsDTO.
  */
-@Mapper(componentModel = "spring", uses = {UsersGroupMapper.class, SubCategoriesMapper.class, AccountsMapper.class})
+@Mapper(componentModel = "spring", uses = {UserGroupAccountMapper.class, SubCategoriesMapper.class})
 public interface MovementesOutgoingsMapper extends EntityMapper<MovementesOutgoingsDTO, MovementesOutgoings> {
 
-    @Mapping(source = "idUserGroup.id", target = "idUserGroupId")
-    @Mapping(source = "idSubCategory.id", target = "idSubCategoryId")
-    @Mapping(source = "paymentMethod.id", target = "paymentMethodId")
+    @Mapping(source = "userGroupAccount.id", target = "userGroupAccountId")
+    @Mapping(source = "subCategory.id", target = "subCategoryId")
     MovementesOutgoingsDTO toDto(MovementesOutgoings movementesOutgoings);
 
-    @Mapping(source = "idUserGroupId", target = "idUserGroup")
-    @Mapping(source = "idSubCategoryId", target = "idSubCategory")
-    @Mapping(source = "paymentMethodId", target = "paymentMethod")
+    @Mapping(source = "userGroupAccountId", target = "userGroupAccount")
+    @Mapping(source = "subCategoryId", target = "subCategory")
     MovementesOutgoings toEntity(MovementesOutgoingsDTO movementesOutgoingsDTO);
 
     default MovementesOutgoings fromId(Long id) {

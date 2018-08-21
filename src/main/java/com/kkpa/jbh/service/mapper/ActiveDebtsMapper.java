@@ -11,16 +11,16 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UsersGroupMapper.class, SubCategoriesMapper.class, MovementesOutgoingsMapper.class})
 public interface ActiveDebtsMapper extends EntityMapper<ActiveDebtsDTO, ActiveDebts> {
 
-    @Mapping(source = "idDebtor.id", target = "idDebtorId")
-    @Mapping(source = "idCreditor.id", target = "idCreditorId")
-    @Mapping(source = "idSubCategory.id", target = "idSubCategoryId")
-    @Mapping(source = "idMovementOutgoing.id", target = "idMovementOutgoingId")
+    @Mapping(source = "debtor.id", target = "debtorId")
+    @Mapping(source = "creditor.id", target = "creditorId")
+    @Mapping(source = "subCategory.id", target = "subCategoryId")
+    @Mapping(source = "movementOutgoing.id", target = "movementOutgoingId")
     ActiveDebtsDTO toDto(ActiveDebts activeDebts);
 
-    @Mapping(source = "idDebtorId", target = "idDebtor")
-    @Mapping(source = "idCreditorId", target = "idCreditor")
-    @Mapping(source = "idSubCategoryId", target = "idSubCategory")
-    @Mapping(source = "idMovementOutgoingId", target = "idMovementOutgoing")
+    @Mapping(source = "debtorId", target = "debtor")
+    @Mapping(source = "creditorId", target = "creditor")
+    @Mapping(source = "subCategoryId", target = "subCategory")
+    @Mapping(source = "movementOutgoingId", target = "movementOutgoing")
     ActiveDebts toEntity(ActiveDebtsDTO activeDebtsDTO);
 
     default ActiveDebts fromId(Long id) {

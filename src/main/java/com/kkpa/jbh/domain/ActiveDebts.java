@@ -25,27 +25,27 @@ public class ActiveDebts implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "jhi_value", precision = 10, scale = 2)
-    private BigDecimal value;
+    @Column(name = "total_value", precision = 10, scale = 2)
+    private BigDecimal totalValue;
 
-    @Column(name = "create_date")
-    private LocalDate createDate;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private UsersGroup idDebtor;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private UsersGroup idCreditor;
+    private UsersGroup debtor;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private SubCategories idSubCategory;
+    private UsersGroup creditor;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private MovementesOutgoings idMovementOutgoing;
+    private SubCategories subCategory;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private MovementesOutgoings movementOutgoing;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -56,82 +56,82 @@ public class ActiveDebts implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getTotalValue() {
+        return totalValue;
     }
 
-    public ActiveDebts value(BigDecimal value) {
-        this.value = value;
+    public ActiveDebts totalValue(BigDecimal totalValue) {
+        this.totalValue = totalValue;
         return this;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setTotalValue(BigDecimal totalValue) {
+        this.totalValue = totalValue;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public ActiveDebts createDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public ActiveDebts createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public UsersGroup getIdDebtor() {
-        return idDebtor;
+    public UsersGroup getDebtor() {
+        return debtor;
     }
 
-    public ActiveDebts idDebtor(UsersGroup usersGroup) {
-        this.idDebtor = usersGroup;
+    public ActiveDebts debtor(UsersGroup usersGroup) {
+        this.debtor = usersGroup;
         return this;
     }
 
-    public void setIdDebtor(UsersGroup usersGroup) {
-        this.idDebtor = usersGroup;
+    public void setDebtor(UsersGroup usersGroup) {
+        this.debtor = usersGroup;
     }
 
-    public UsersGroup getIdCreditor() {
-        return idCreditor;
+    public UsersGroup getCreditor() {
+        return creditor;
     }
 
-    public ActiveDebts idCreditor(UsersGroup usersGroup) {
-        this.idCreditor = usersGroup;
+    public ActiveDebts creditor(UsersGroup usersGroup) {
+        this.creditor = usersGroup;
         return this;
     }
 
-    public void setIdCreditor(UsersGroup usersGroup) {
-        this.idCreditor = usersGroup;
+    public void setCreditor(UsersGroup usersGroup) {
+        this.creditor = usersGroup;
     }
 
-    public SubCategories getIdSubCategory() {
-        return idSubCategory;
+    public SubCategories getSubCategory() {
+        return subCategory;
     }
 
-    public ActiveDebts idSubCategory(SubCategories subCategories) {
-        this.idSubCategory = subCategories;
+    public ActiveDebts subCategory(SubCategories subCategories) {
+        this.subCategory = subCategories;
         return this;
     }
 
-    public void setIdSubCategory(SubCategories subCategories) {
-        this.idSubCategory = subCategories;
+    public void setSubCategory(SubCategories subCategories) {
+        this.subCategory = subCategories;
     }
 
-    public MovementesOutgoings getIdMovementOutgoing() {
-        return idMovementOutgoing;
+    public MovementesOutgoings getMovementOutgoing() {
+        return movementOutgoing;
     }
 
-    public ActiveDebts idMovementOutgoing(MovementesOutgoings movementesOutgoings) {
-        this.idMovementOutgoing = movementesOutgoings;
+    public ActiveDebts movementOutgoing(MovementesOutgoings movementesOutgoings) {
+        this.movementOutgoing = movementesOutgoings;
         return this;
     }
 
-    public void setIdMovementOutgoing(MovementesOutgoings movementesOutgoings) {
-        this.idMovementOutgoing = movementesOutgoings;
+    public void setMovementOutgoing(MovementesOutgoings movementesOutgoings) {
+        this.movementOutgoing = movementesOutgoings;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -159,8 +159,8 @@ public class ActiveDebts implements Serializable {
     public String toString() {
         return "ActiveDebts{" +
             "id=" + getId() +
-            ", value=" + getValue() +
-            ", createDate='" + getCreateDate() + "'" +
+            ", totalValue=" + getTotalValue() +
+            ", createdAt='" + getCreatedAt() + "'" +
             "}";
     }
 }

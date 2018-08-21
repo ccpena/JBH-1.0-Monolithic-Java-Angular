@@ -17,10 +17,10 @@
                 "title": "Movementes Outgoings"
             },
             "totalValue": "Total Value",
-            "createDate": "Create Date",
-            "idUserGroup": "Id User Group",
-            "idSubCategory": "Id Sub Category",
-            "paymentMethod": "Payment Method"
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "userGroupAccount": "User Group Account",
+            "subCategory": "Sub Category"
         }
     }
 }

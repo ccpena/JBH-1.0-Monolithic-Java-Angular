@@ -1,18 +1,23 @@
 {
     "name": "Accounts",
-    "fields": [],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "LocalDate"
+        }
+    ],
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "type",
-            "otherEntityName": "accountTypes",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "accounts"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "idUsrGroup",
+            "relationshipName": "usrGroup",
             "otherEntityName": "usersGroup",
             "otherEntityField": "id",
             "ownerSide": true,
@@ -27,6 +32,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

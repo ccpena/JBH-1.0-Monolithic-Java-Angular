@@ -1,11 +1,15 @@
 package com.kkpa.jbh.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,16 +30,19 @@ public class UsersGroup implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "invitation_accepted")
-    private Boolean invitationAccepted;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private User idUserOwner;
+    private User userOwner;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private User idUserInvited;
+    @OneToMany(mappedBy = "usersGroup")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MembersGroup> members = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -59,43 +66,68 @@ public class UsersGroup implements Serializable {
         this.name = name;
     }
 
-    public Boolean isInvitationAccepted() {
-        return invitationAccepted;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public UsersGroup invitationAccepted(Boolean invitationAccepted) {
-        this.invitationAccepted = invitationAccepted;
+    public UsersGroup createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setInvitationAccepted(Boolean invitationAccepted) {
-        this.invitationAccepted = invitationAccepted;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public User getIdUserOwner() {
-        return idUserOwner;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public UsersGroup idUserOwner(User user) {
-        this.idUserOwner = user;
+    public UsersGroup updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 
-    public void setIdUserOwner(User user) {
-        this.idUserOwner = user;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public User getIdUserInvited() {
-        return idUserInvited;
+    public User getUserOwner() {
+        return userOwner;
     }
 
-    public UsersGroup idUserInvited(User user) {
-        this.idUserInvited = user;
+    public UsersGroup userOwner(User user) {
+        this.userOwner = user;
         return this;
     }
 
-    public void setIdUserInvited(User user) {
-        this.idUserInvited = user;
+    public void setUserOwner(User user) {
+        this.userOwner = user;
+    }
+
+    public Set<MembersGroup> getMembers() {
+        return members;
+    }
+
+    public UsersGroup members(Set<MembersGroup> membersGroups) {
+        this.members = membersGroups;
+        return this;
+    }
+
+    public UsersGroup addMembers(MembersGroup membersGroup) {
+        this.members.add(membersGroup);
+        membersGroup.setUsersGroup(this);
+        return this;
+    }
+
+    public UsersGroup removeMembers(MembersGroup membersGroup) {
+        this.members.remove(membersGroup);
+        membersGroup.setUsersGroup(null);
+        return this;
+    }
+
+    public void setMembers(Set<MembersGroup> membersGroups) {
+        this.members = membersGroups;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -124,7 +156,8 @@ public class UsersGroup implements Serializable {
         return "UsersGroup{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", invitationAccepted='" + isInvitationAccepted() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

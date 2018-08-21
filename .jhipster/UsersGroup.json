@@ -6,25 +6,27 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "invitationAccepted",
-            "fieldType": "Boolean"
+            "fieldName": "createdAt",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "LocalDate"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idUserOwner",
+            "relationshipName": "userOwner",
             "otherEntityName": "user",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "usersGroup"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "idUserInvited",
-            "otherEntityName": "user",
-            "otherEntityField": "id",
-            "ownerSide": true,
+            "relationshipType": "one-to-many",
+            "relationshipName": "members",
+            "otherEntityName": "membersGroup",
             "otherEntityRelationshipName": "usersGroup"
         }
     ],
@@ -36,6 +38,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

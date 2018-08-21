@@ -45,8 +45,8 @@ public class AccountTypesResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_DEFINED_BY_JBH = false;
-    private static final Boolean UPDATED_DEFINED_BY_JBH = true;
+    private static final Boolean DEFAULT_BY_DEFAULT = false;
+    private static final Boolean UPDATED_BY_DEFAULT = true;
 
     @Autowired
     private AccountTypesRepository accountTypesRepository;
@@ -95,7 +95,7 @@ public class AccountTypesResourceIntTest {
     public static AccountTypes createEntity(EntityManager em) {
         AccountTypes accountTypes = new AccountTypes()
             .description(DEFAULT_DESCRIPTION)
-            .definedByJBH(DEFAULT_DEFINED_BY_JBH);
+            .byDefault(DEFAULT_BY_DEFAULT);
         return accountTypes;
     }
 
@@ -121,7 +121,7 @@ public class AccountTypesResourceIntTest {
         assertThat(accountTypesList).hasSize(databaseSizeBeforeCreate + 1);
         AccountTypes testAccountTypes = accountTypesList.get(accountTypesList.size() - 1);
         assertThat(testAccountTypes.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testAccountTypes.isDefinedByJBH()).isEqualTo(DEFAULT_DEFINED_BY_JBH);
+        assertThat(testAccountTypes.isByDefault()).isEqualTo(DEFAULT_BY_DEFAULT);
     }
 
     @Test
@@ -156,7 +156,7 @@ public class AccountTypesResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(accountTypes.getId().intValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].definedByJBH").value(hasItem(DEFAULT_DEFINED_BY_JBH.booleanValue())));
+            .andExpect(jsonPath("$.[*].byDefault").value(hasItem(DEFAULT_BY_DEFAULT.booleanValue())));
     }
     
 
@@ -172,7 +172,7 @@ public class AccountTypesResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(accountTypes.getId().intValue()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.definedByJBH").value(DEFAULT_DEFINED_BY_JBH.booleanValue()));
+            .andExpect(jsonPath("$.byDefault").value(DEFAULT_BY_DEFAULT.booleanValue()));
     }
     @Test
     @Transactional
@@ -196,7 +196,7 @@ public class AccountTypesResourceIntTest {
         em.detach(updatedAccountTypes);
         updatedAccountTypes
             .description(UPDATED_DESCRIPTION)
-            .definedByJBH(UPDATED_DEFINED_BY_JBH);
+            .byDefault(UPDATED_BY_DEFAULT);
         AccountTypesDTO accountTypesDTO = accountTypesMapper.toDto(updatedAccountTypes);
 
         restAccountTypesMockMvc.perform(put("/api/account-types")
@@ -209,7 +209,7 @@ public class AccountTypesResourceIntTest {
         assertThat(accountTypesList).hasSize(databaseSizeBeforeUpdate);
         AccountTypes testAccountTypes = accountTypesList.get(accountTypesList.size() - 1);
         assertThat(testAccountTypes.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testAccountTypes.isDefinedByJBH()).isEqualTo(UPDATED_DEFINED_BY_JBH);
+        assertThat(testAccountTypes.isByDefault()).isEqualTo(UPDATED_BY_DEFAULT);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class AccountTypesResourceIntTest {
         // Create the AccountTypes
         AccountTypesDTO accountTypesDTO = accountTypesMapper.toDto(accountTypes);
 
-        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
+        // If the entity doesn't have an ID, it will be created instead of just being updated
         restAccountTypesMockMvc.perform(put("/api/account-types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(accountTypesDTO)))

@@ -1,5 +1,6 @@
 package com.kkpa.jbh.service.dto;
 
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,9 +11,13 @@ public class AccountsDTO implements Serializable {
 
     private Long id;
 
-    private Long typeId;
+    private String description;
 
-    private Long idUsrGroupId;
+    private LocalDate createdAt;
+
+    private LocalDate updatedAt;
+
+    private Long usrGroupId;
 
     public Long getId() {
         return id;
@@ -22,20 +27,36 @@ public class AccountsDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getTypeId() {
-        return typeId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTypeId(Long accountTypesId) {
-        this.typeId = accountTypesId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Long getIdUsrGroupId() {
-        return idUsrGroupId;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setIdUsrGroupId(Long usersGroupId) {
-        this.idUsrGroupId = usersGroupId;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getUsrGroupId() {
+        return usrGroupId;
+    }
+
+    public void setUsrGroupId(Long usersGroupId) {
+        this.usrGroupId = usersGroupId;
     }
 
     @Override
@@ -63,8 +84,10 @@ public class AccountsDTO implements Serializable {
     public String toString() {
         return "AccountsDTO{" +
             "id=" + getId() +
-            ", type=" + getTypeId() +
-            ", idUsrGroup=" + getIdUsrGroupId() +
+            ", description='" + getDescription() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", usrGroup=" + getUsrGroupId() +
             "}";
     }
 }

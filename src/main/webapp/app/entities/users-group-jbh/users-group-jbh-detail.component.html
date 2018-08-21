@@ -9,17 +9,15 @@
                 <dd>
                     <span>{{usersGroup.name}}</span>
                 </dd>
-                <dt><span jhiTranslate="jbhApp.usersGroup.invitationAccepted">Invitation Accepted</span></dt>
+                <dt><span jhiTranslate="jbhApp.usersGroup.membersGroup">Members Group</span></dt>
                 <dd>
-                    <span>{{usersGroup.invitationAccepted}}</span>
+                    <div *ngIf="usersGroup.membersGroupId">
+                        <a [routerLink]="['/members-group-jbh', usersGroup.membersGroupId, 'view']">{{usersGroup.membersGroupId}}</a>
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="jbhApp.usersGroup.idUserOwner">Id User Owner</span></dt>
                 <dd>
                     {{usersGroup.idUserOwnerId}}
-                </dd>
-                <dt><span jhiTranslate="jbhApp.usersGroup.idUserInvited">Id User Invited</span></dt>
-                <dd>
-                    {{usersGroup.idUserInvitedId}}
                 </dd>
             </dl>
 

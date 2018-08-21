@@ -17,9 +17,10 @@
                 "title": "Users Group"
             },
             "name": "Name",
-            "invitationAccepted": "Invitation Accepted",
-            "idUserOwner": "Id User Owner",
-            "idUserInvited": "Id User Invited"
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "userOwner": "User Owner",
+            "members": "Members"
         }
     }
 }

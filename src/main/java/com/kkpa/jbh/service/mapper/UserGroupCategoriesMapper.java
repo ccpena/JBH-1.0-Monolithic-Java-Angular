@@ -8,14 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity UserGroupCategories and its DTO UserGroupCategoriesDTO.
  */
-@Mapper(componentModel = "spring", uses = {UsersGroupMapper.class})
+@Mapper(componentModel = "spring", uses = {UsersGroupMapper.class, CategoriesMapper.class})
 public interface UserGroupCategoriesMapper extends EntityMapper<UserGroupCategoriesDTO, UserGroupCategories> {
 
-    @Mapping(source = "idUserGroup.id", target = "idUserGroupId")
+    @Mapping(source = "userGroup.id", target = "userGroupId")
+    @Mapping(source = "category.id", target = "categoryId")
     UserGroupCategoriesDTO toDto(UserGroupCategories userGroupCategories);
 
-    @Mapping(source = "idUserGroupId", target = "idUserGroup")
-    @Mapping(target = "idCategories", ignore = true)
+    @Mapping(source = "userGroupId", target = "userGroup")
+    @Mapping(source = "categoryId", target = "category")
     UserGroupCategories toEntity(UserGroupCategoriesDTO userGroupCategoriesDTO);
 
     default UserGroupCategories fromId(Long id) {

@@ -45,11 +45,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = JbhApp.class)
 public class ActiveDebtsResourceIntTest {
 
-    private static final BigDecimal DEFAULT_VALUE = new BigDecimal(1);
-    private static final BigDecimal UPDATED_VALUE = new BigDecimal(2);
+    private static final BigDecimal DEFAULT_TOTAL_VALUE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_TOTAL_VALUE = new BigDecimal(2);
 
-    private static final LocalDate DEFAULT_CREATE_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_CREATE_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_CREATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_AT = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private ActiveDebtsRepository activeDebtsRepository;
@@ -97,8 +97,8 @@ public class ActiveDebtsResourceIntTest {
      */
     public static ActiveDebts createEntity(EntityManager em) {
         ActiveDebts activeDebts = new ActiveDebts()
-            .value(DEFAULT_VALUE)
-            .createDate(DEFAULT_CREATE_DATE);
+            .totalValue(DEFAULT_TOTAL_VALUE)
+            .createdAt(DEFAULT_CREATED_AT);
         return activeDebts;
     }
 
@@ -123,8 +123,8 @@ public class ActiveDebtsResourceIntTest {
         List<ActiveDebts> activeDebtsList = activeDebtsRepository.findAll();
         assertThat(activeDebtsList).hasSize(databaseSizeBeforeCreate + 1);
         ActiveDebts testActiveDebts = activeDebtsList.get(activeDebtsList.size() - 1);
-        assertThat(testActiveDebts.getValue()).isEqualTo(DEFAULT_VALUE);
-        assertThat(testActiveDebts.getCreateDate()).isEqualTo(DEFAULT_CREATE_DATE);
+        assertThat(testActiveDebts.getTotalValue()).isEqualTo(DEFAULT_TOTAL_VALUE);
+        assertThat(testActiveDebts.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
     }
 
     @Test
@@ -158,8 +158,8 @@ public class ActiveDebtsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(activeDebts.getId().intValue())))
-            .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.intValue())))
-            .andExpect(jsonPath("$.[*].createDate").value(hasItem(DEFAULT_CREATE_DATE.toString())));
+            .andExpect(jsonPath("$.[*].totalValue").value(hasItem(DEFAULT_TOTAL_VALUE.intValue())))
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())));
     }
     
 
@@ -174,8 +174,8 @@ public class ActiveDebtsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(activeDebts.getId().intValue()))
-            .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.intValue()))
-            .andExpect(jsonPath("$.createDate").value(DEFAULT_CREATE_DATE.toString()));
+            .andExpect(jsonPath("$.totalValue").value(DEFAULT_TOTAL_VALUE.intValue()))
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()));
     }
     @Test
     @Transactional
@@ -198,8 +198,8 @@ public class ActiveDebtsResourceIntTest {
         // Disconnect from session so that the updates on updatedActiveDebts are not directly saved in db
         em.detach(updatedActiveDebts);
         updatedActiveDebts
-            .value(UPDATED_VALUE)
-            .createDate(UPDATED_CREATE_DATE);
+            .totalValue(UPDATED_TOTAL_VALUE)
+            .createdAt(UPDATED_CREATED_AT);
         ActiveDebtsDTO activeDebtsDTO = activeDebtsMapper.toDto(updatedActiveDebts);
 
         restActiveDebtsMockMvc.perform(put("/api/active-debts")
@@ -211,8 +211,8 @@ public class ActiveDebtsResourceIntTest {
         List<ActiveDebts> activeDebtsList = activeDebtsRepository.findAll();
         assertThat(activeDebtsList).hasSize(databaseSizeBeforeUpdate);
         ActiveDebts testActiveDebts = activeDebtsList.get(activeDebtsList.size() - 1);
-        assertThat(testActiveDebts.getValue()).isEqualTo(UPDATED_VALUE);
-        assertThat(testActiveDebts.getCreateDate()).isEqualTo(UPDATED_CREATE_DATE);
+        assertThat(testActiveDebts.getTotalValue()).isEqualTo(UPDATED_TOTAL_VALUE);
+        assertThat(testActiveDebts.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
     }
 
     @Test
@@ -223,7 +223,7 @@ public class ActiveDebtsResourceIntTest {
         // Create the ActiveDebts
         ActiveDebtsDTO activeDebtsDTO = activeDebtsMapper.toDto(activeDebts);
 
-        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
+        // If the entity doesn't have an ID, it will be created instead of just being updated
         restActiveDebtsMockMvc.perform(put("/api/active-debts")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(activeDebtsDTO)))

@@ -12,17 +12,17 @@ public class ActiveDebtsDTO implements Serializable {
 
     private Long id;
 
-    private BigDecimal value;
+    private BigDecimal totalValue;
 
-    private LocalDate createDate;
+    private LocalDate createdAt;
 
-    private Long idDebtorId;
+    private Long debtorId;
 
-    private Long idCreditorId;
+    private Long creditorId;
 
-    private Long idSubCategoryId;
+    private Long subCategoryId;
 
-    private Long idMovementOutgoingId;
+    private Long movementOutgoingId;
 
     public Long getId() {
         return id;
@@ -32,52 +32,52 @@ public class ActiveDebtsDTO implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getTotalValue() {
+        return totalValue;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setTotalValue(BigDecimal totalValue) {
+        this.totalValue = totalValue;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getIdDebtorId() {
-        return idDebtorId;
+    public Long getDebtorId() {
+        return debtorId;
     }
 
-    public void setIdDebtorId(Long usersGroupId) {
-        this.idDebtorId = usersGroupId;
+    public void setDebtorId(Long usersGroupId) {
+        this.debtorId = usersGroupId;
     }
 
-    public Long getIdCreditorId() {
-        return idCreditorId;
+    public Long getCreditorId() {
+        return creditorId;
     }
 
-    public void setIdCreditorId(Long usersGroupId) {
-        this.idCreditorId = usersGroupId;
+    public void setCreditorId(Long usersGroupId) {
+        this.creditorId = usersGroupId;
     }
 
-    public Long getIdSubCategoryId() {
-        return idSubCategoryId;
+    public Long getSubCategoryId() {
+        return subCategoryId;
     }
 
-    public void setIdSubCategoryId(Long subCategoriesId) {
-        this.idSubCategoryId = subCategoriesId;
+    public void setSubCategoryId(Long subCategoriesId) {
+        this.subCategoryId = subCategoriesId;
     }
 
-    public Long getIdMovementOutgoingId() {
-        return idMovementOutgoingId;
+    public Long getMovementOutgoingId() {
+        return movementOutgoingId;
     }
 
-    public void setIdMovementOutgoingId(Long movementesOutgoingsId) {
-        this.idMovementOutgoingId = movementesOutgoingsId;
+    public void setMovementOutgoingId(Long movementesOutgoingsId) {
+        this.movementOutgoingId = movementesOutgoingsId;
     }
 
     @Override
@@ -105,12 +105,12 @@ public class ActiveDebtsDTO implements Serializable {
     public String toString() {
         return "ActiveDebtsDTO{" +
             "id=" + getId() +
-            ", value=" + getValue() +
-            ", createDate='" + getCreateDate() + "'" +
-            ", idDebtor=" + getIdDebtorId() +
-            ", idCreditor=" + getIdCreditorId() +
-            ", idSubCategory=" + getIdSubCategoryId() +
-            ", idMovementOutgoing=" + getIdMovementOutgoingId() +
+            ", totalValue=" + getTotalValue() +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", debtor=" + getDebtorId() +
+            ", creditor=" + getCreditorId() +
+            ", subCategory=" + getSubCategoryId() +
+            ", movementOutgoing=" + getMovementOutgoingId() +
             "}";
     }
 }

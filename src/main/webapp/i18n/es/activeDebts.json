@@ -16,12 +16,12 @@
             "detail": {
                 "title": "Active Debts"
             },
-            "value": "Value",
-            "createDate": "Create Date",
-            "idDebtor": "Id Debtor",
-            "idCreditor": "Id Creditor",
-            "idSubCategory": "Id Sub Category",
-            "idMovementOutgoing": "Id Movement Outgoing"
+            "totalValue": "Total Value",
+            "createdAt": "Created At",
+            "debtor": "Debtor",
+            "creditor": "Creditor",
+            "subCategory": "Sub Category",
+            "movementOutgoing": "Movement Outgoing"
         }
     }
 }

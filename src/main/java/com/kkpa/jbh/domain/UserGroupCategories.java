@@ -1,14 +1,12 @@
 package com.kkpa.jbh.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -26,13 +24,22 @@ public class UserGroupCategories implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
+
     @OneToOne
     @JoinColumn(unique = true)
-    private UsersGroup idUserGroup;
+    private UsersGroup userGroup;
 
-    @OneToMany(mappedBy = "userGroupCategories")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Categories> idCategories = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Categories category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -43,42 +50,69 @@ public class UserGroupCategories implements Serializable {
         this.id = id;
     }
 
-    public UsersGroup getIdUserGroup() {
-        return idUserGroup;
+    public String getName() {
+        return name;
     }
 
-    public UserGroupCategories idUserGroup(UsersGroup usersGroup) {
-        this.idUserGroup = usersGroup;
+    public UserGroupCategories name(String name) {
+        this.name = name;
         return this;
     }
 
-    public void setIdUserGroup(UsersGroup usersGroup) {
-        this.idUserGroup = usersGroup;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Set<Categories> getIdCategories() {
-        return idCategories;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public UserGroupCategories idCategories(Set<Categories> categories) {
-        this.idCategories = categories;
+    public UserGroupCategories createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public UserGroupCategories addIdCategory(Categories categories) {
-        this.idCategories.add(categories);
-        categories.setUserGroupCategories(this);
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public UserGroupCategories updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 
-    public UserGroupCategories removeIdCategory(Categories categories) {
-        this.idCategories.remove(categories);
-        categories.setUserGroupCategories(null);
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public UsersGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public UserGroupCategories userGroup(UsersGroup usersGroup) {
+        this.userGroup = usersGroup;
         return this;
     }
 
-    public void setIdCategories(Set<Categories> categories) {
-        this.idCategories = categories;
+    public void setUserGroup(UsersGroup usersGroup) {
+        this.userGroup = usersGroup;
+    }
+
+    public Categories getCategory() {
+        return category;
+    }
+
+    public UserGroupCategories category(Categories categories) {
+        this.category = categories;
+        return this;
+    }
+
+    public void setCategory(Categories categories) {
+        this.category = categories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -106,6 +140,9 @@ public class UserGroupCategories implements Serializable {
     public String toString() {
         return "UserGroupCategories{" +
             "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

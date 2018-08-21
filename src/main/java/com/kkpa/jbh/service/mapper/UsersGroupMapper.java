@@ -11,12 +11,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface UsersGroupMapper extends EntityMapper<UsersGroupDTO, UsersGroup> {
 
-    @Mapping(source = "idUserOwner.id", target = "idUserOwnerId")
-    @Mapping(source = "idUserInvited.id", target = "idUserInvitedId")
+    @Mapping(source = "userOwner.id", target = "userOwnerId")
     UsersGroupDTO toDto(UsersGroup usersGroup);
 
-    @Mapping(source = "idUserOwnerId", target = "idUserOwner")
-    @Mapping(source = "idUserInvitedId", target = "idUserInvited")
+    @Mapping(source = "userOwnerId", target = "userOwner")
+    @Mapping(target = "members", ignore = true)
     UsersGroup toEntity(UsersGroupDTO usersGroupDTO);
 
     default UsersGroup fromId(Long id) {

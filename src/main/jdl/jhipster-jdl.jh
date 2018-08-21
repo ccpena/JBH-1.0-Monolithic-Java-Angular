@@ -2,69 +2,89 @@ DEFAULT_MAX_NAMELENGTH = 100
 // Categories Module
 entity Categories {	
     name String required maxlength(DEFAULT_MAX_NAMELENGTH),
-    definedByJBH Boolean,
-    creationDate LocalDate
+    byDefault Boolean,
+    createdAt LocalDate,
+    updatedAt LocalDate 
 }
 
 entity SubCategories {	
     name String required maxlength(DEFAULT_MAX_NAMELENGTH),
-    definedByJBH Boolean,
-    creationDate LocalDate
+    byDefault Boolean,
+    createdAt LocalDate,
+    updatedAt LocalDate
 }
 
-// Users
+// Users 
+entity MembersGroup {
+	invitationAccepted Boolean,
+    createdAt LocalDate,
+    updatedAt LocalDate
+}
 
 entity UsersGroup {	
     name String,
-    invitationAccepted Boolean
+    createdAt LocalDate,
+    updatedAt LocalDate
 }
 
-entity UserGroupCategories {}
+entity UserGroupCategories {
+	name String,
+    createdAt LocalDate,
+    updatedAt LocalDate
+}
 
 
 // Account Module
-entity Accounts {}
-
-entity AccountTypes {	
-    description String,
-    definedByJBH Boolean
+entity Accounts {
+	description String,    
+	createdAt LocalDate,
+    updatedAt LocalDate
 }
 
+entity UserGroupAccount {	
+	activeBalance BigDecimal,
+    passiveBalance BigDecimal,
+    createdAt LocalDate,
+    updatedAt LocalDate
+}
 
 // Movementes
 entity MovementesOutgoings {	
     totalValue BigDecimal,
-    createDate LocalDate
+    createdAt LocalDate,
+    updatedAt LocalDate
 }
 
 entity ActiveDebts {	
-    value BigDecimal,
-    createDate LocalDate
+    totalValue BigDecimal,
+    createdAt LocalDate
 }
 
-relationship OneToOne {
-	Accounts{type} to AccountTypes,
-    Accounts{idUsrGroup} to UsersGroup,        
-    UserGroupCategories{idUserGroup} to UsersGroup,    	
-    UsersGroup{idUserOwner} to User,
-    UsersGroup{idUserInvited} to User,        
-    MovementesOutgoings{idUserGroup} to UsersGroup,
-    MovementesOutgoings{idSubCategory} to SubCategories,
-    MovementesOutgoings{paymentMethod} to Accounts,        
-    ActiveDebts{idDebtor} to UsersGroup,
-    ActiveDebts{idCreditor} to UsersGroup,
-    ActiveDebts{idSubCategory} to SubCategories,
-    ActiveDebts{idMovementOutgoing} to MovementesOutgoings
+
+
+relationship OneToOne {	
+	// Users Module
+    UsersGroup{userOwner} to User,
+    UserGroupCategories{userGroup} to UsersGroup,
+    UserGroupCategories{category} to Categories,    
+    MembersGroup{userInvited} to User,     
+    // Account Module
+    Accounts{usrGroup} to UsersGroup,  
+    UserGroupAccount{usrGroup} to UsersGroup,
+    UserGroupAccount{account} to Accounts,
+    MovementesOutgoings{userGroupAccount} to UserGroupAccount,
+    MovementesOutgoings{subCategory} to SubCategories,    
+    ActiveDebts{debtor} to UsersGroup,
+    ActiveDebts{creditor} to UsersGroup,
+    ActiveDebts{subCategory} to SubCategories,
+    ActiveDebts{movementOutgoing} to MovementesOutgoings
 }
 
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {	
-    Categories{subCategory} to SubCategories,
-    UserGroupCategories{idCategory} to Categories
+    Categories{subCategories} to SubCategories{category},
+    UsersGroup{members} to MembersGroup
 }
-
-
-
 
 // Set pagination options
 paginate SubCategories, Categories with infinite-scroll
@@ -80,4 +100,4 @@ service * with serviceImpl
 dto * with mapstruct
 
 // Set an angular suffix
-angularSuffix * with JBH
+// angularSuffix * with JBH

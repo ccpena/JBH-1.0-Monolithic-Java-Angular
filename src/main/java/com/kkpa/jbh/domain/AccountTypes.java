@@ -26,8 +26,8 @@ public class AccountTypes implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "defined_by_jbh")
-    private Boolean definedByJBH;
+    @Column(name = "by_default")
+    private Boolean byDefault;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -51,17 +51,17 @@ public class AccountTypes implements Serializable {
         this.description = description;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public AccountTypes definedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public AccountTypes byDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
         return this;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -90,7 +90,7 @@ public class AccountTypes implements Serializable {
         return "AccountTypes{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
+            ", byDefault='" + isByDefault() + "'" +
             "}";
     }
 }

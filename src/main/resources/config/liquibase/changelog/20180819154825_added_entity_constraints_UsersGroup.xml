@@ -8,15 +8,9 @@
     -->
     <changeSet id="20180819154825-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="id_user_owner_id"
+        <addForeignKeyConstraint baseColumnNames="user_owner_id"
                                  baseTableName="users_group"
-                                 constraintName="fk_users_group_id_user_owner_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jbh_user"/>
-
-        <addForeignKeyConstraint baseColumnNames="id_user_invited_id"
-                                 baseTableName="users_group"
-                                 constraintName="fk_users_group_id_user_invited_id"
+                                 constraintName="fk_users_group_user_owner_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jbh_user"/>
 

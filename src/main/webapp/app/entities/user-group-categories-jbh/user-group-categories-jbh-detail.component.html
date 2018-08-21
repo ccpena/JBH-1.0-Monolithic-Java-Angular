@@ -5,6 +5,16 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jbhApp.userGroupCategories.name">Name</span></dt>
+                <dd>
+                    <span>{{userGroupCategories.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="jbhApp.userGroupCategories.categories">Categories</span></dt>
+                <dd>
+                    <div *ngIf="userGroupCategories.categoriesId">
+                        <a [routerLink]="['/categories-jbh', userGroupCategories.categoriesId, 'view']">{{userGroupCategories.categoriesId}}</a>
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="jbhApp.userGroupCategories.idUserGroup">Id User Group</span></dt>
                 <dd>
                     <div *ngIf="userGroupCategories.idUserGroupId">

@@ -1,7 +1,6 @@
 package com.kkpa.jbh.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -34,19 +33,18 @@ public class Categories implements Serializable {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "defined_by_jbh")
-    private Boolean definedByJBH;
+    @Column(name = "by_default")
+    private Boolean byDefault;
 
-    @Column(name = "creation_date")
-    private LocalDate creationDate;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "categories")
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SubCategories> subCategories = new HashSet<>();
-
-    @ManyToOne
-    @JsonIgnoreProperties("idCategories")
-    private UserGroupCategories userGroupCategories;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -70,30 +68,43 @@ public class Categories implements Serializable {
         this.name = name;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public Categories definedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public Categories byDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
         return this;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public Categories creationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public Categories createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Categories updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Set<SubCategories> getSubCategories() {
@@ -105,33 +116,20 @@ public class Categories implements Serializable {
         return this;
     }
 
-    public Categories addSubCategory(SubCategories subCategories) {
+    public Categories addSubCategories(SubCategories subCategories) {
         this.subCategories.add(subCategories);
-        subCategories.setCategories(this);
+        subCategories.setCategory(this);
         return this;
     }
 
-    public Categories removeSubCategory(SubCategories subCategories) {
+    public Categories removeSubCategories(SubCategories subCategories) {
         this.subCategories.remove(subCategories);
-        subCategories.setCategories(null);
+        subCategories.setCategory(null);
         return this;
     }
 
     public void setSubCategories(Set<SubCategories> subCategories) {
         this.subCategories = subCategories;
-    }
-
-    public UserGroupCategories getUserGroupCategories() {
-        return userGroupCategories;
-    }
-
-    public Categories userGroupCategories(UserGroupCategories userGroupCategories) {
-        this.userGroupCategories = userGroupCategories;
-        return this;
-    }
-
-    public void setUserGroupCategories(UserGroupCategories userGroupCategories) {
-        this.userGroupCategories = userGroupCategories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -160,8 +158,9 @@ public class Categories implements Serializable {
         return "Categories{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
-            ", creationDate='" + getCreationDate() + "'" +
+            ", byDefault='" + isByDefault() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

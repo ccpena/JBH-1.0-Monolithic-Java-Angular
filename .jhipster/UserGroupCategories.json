@@ -1,19 +1,34 @@
 {
     "name": "UserGroupCategories",
-    "fields": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "LocalDate"
+        }
+    ],
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idUserGroup",
+            "relationshipName": "userGroup",
             "otherEntityName": "usersGroup",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "userGroupCategories"
         },
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "idCategory",
+            "relationshipType": "one-to-one",
+            "relationshipName": "category",
             "otherEntityName": "categories",
+            "otherEntityField": "id",
+            "ownerSide": true,
             "otherEntityRelationshipName": "userGroupCategories"
         }
     ],
@@ -25,6 +40,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

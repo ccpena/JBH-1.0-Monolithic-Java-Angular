@@ -16,11 +16,11 @@ public class CategoriesDTO implements Serializable {
     @Size(max = 100)
     private String name;
 
-    private Boolean definedByJBH;
+    private Boolean byDefault;
 
-    private LocalDate creationDate;
+    private LocalDate createdAt;
 
-    private Long userGroupCategoriesId;
+    private LocalDate updatedAt;
 
     public Long getId() {
         return id;
@@ -38,28 +38,28 @@ public class CategoriesDTO implements Serializable {
         this.name = name;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getUserGroupCategoriesId() {
-        return userGroupCategoriesId;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUserGroupCategoriesId(Long userGroupCategoriesId) {
-        this.userGroupCategoriesId = userGroupCategoriesId;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
@@ -88,9 +88,9 @@ public class CategoriesDTO implements Serializable {
         return "CategoriesDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
-            ", creationDate='" + getCreationDate() + "'" +
-            ", userGroupCategories=" + getUserGroupCategoriesId() +
+            ", byDefault='" + isByDefault() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

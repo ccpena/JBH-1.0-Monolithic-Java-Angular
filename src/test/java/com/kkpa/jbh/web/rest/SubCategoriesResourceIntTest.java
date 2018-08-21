@@ -47,11 +47,14 @@ public class SubCategoriesResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final Boolean DEFAULT_DEFINED_BY_JBH = false;
-    private static final Boolean UPDATED_DEFINED_BY_JBH = true;
+    private static final Boolean DEFAULT_BY_DEFAULT = false;
+    private static final Boolean UPDATED_BY_DEFAULT = true;
 
-    private static final LocalDate DEFAULT_CREATION_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_CREATION_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_CREATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_AT = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_UPDATED_AT = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_UPDATED_AT = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private SubCategoriesRepository subCategoriesRepository;
@@ -100,8 +103,9 @@ public class SubCategoriesResourceIntTest {
     public static SubCategories createEntity(EntityManager em) {
         SubCategories subCategories = new SubCategories()
             .name(DEFAULT_NAME)
-            .definedByJBH(DEFAULT_DEFINED_BY_JBH)
-            .creationDate(DEFAULT_CREATION_DATE);
+            .byDefault(DEFAULT_BY_DEFAULT)
+            .createdAt(DEFAULT_CREATED_AT)
+            .updatedAt(DEFAULT_UPDATED_AT);
         return subCategories;
     }
 
@@ -127,8 +131,9 @@ public class SubCategoriesResourceIntTest {
         assertThat(subCategoriesList).hasSize(databaseSizeBeforeCreate + 1);
         SubCategories testSubCategories = subCategoriesList.get(subCategoriesList.size() - 1);
         assertThat(testSubCategories.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testSubCategories.isDefinedByJBH()).isEqualTo(DEFAULT_DEFINED_BY_JBH);
-        assertThat(testSubCategories.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
+        assertThat(testSubCategories.isByDefault()).isEqualTo(DEFAULT_BY_DEFAULT);
+        assertThat(testSubCategories.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
+        assertThat(testSubCategories.getUpdatedAt()).isEqualTo(DEFAULT_UPDATED_AT);
     }
 
     @Test
@@ -182,8 +187,9 @@ public class SubCategoriesResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(subCategories.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].definedByJBH").value(hasItem(DEFAULT_DEFINED_BY_JBH.booleanValue())))
-            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())));
+            .andExpect(jsonPath("$.[*].byDefault").value(hasItem(DEFAULT_BY_DEFAULT.booleanValue())))
+            .andExpect(jsonPath("$.[*].createdAt").value(hasItem(DEFAULT_CREATED_AT.toString())))
+            .andExpect(jsonPath("$.[*].updatedAt").value(hasItem(DEFAULT_UPDATED_AT.toString())));
     }
     
 
@@ -199,8 +205,9 @@ public class SubCategoriesResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(subCategories.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.definedByJBH").value(DEFAULT_DEFINED_BY_JBH.booleanValue()))
-            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()));
+            .andExpect(jsonPath("$.byDefault").value(DEFAULT_BY_DEFAULT.booleanValue()))
+            .andExpect(jsonPath("$.createdAt").value(DEFAULT_CREATED_AT.toString()))
+            .andExpect(jsonPath("$.updatedAt").value(DEFAULT_UPDATED_AT.toString()));
     }
     @Test
     @Transactional
@@ -224,8 +231,9 @@ public class SubCategoriesResourceIntTest {
         em.detach(updatedSubCategories);
         updatedSubCategories
             .name(UPDATED_NAME)
-            .definedByJBH(UPDATED_DEFINED_BY_JBH)
-            .creationDate(UPDATED_CREATION_DATE);
+            .byDefault(UPDATED_BY_DEFAULT)
+            .createdAt(UPDATED_CREATED_AT)
+            .updatedAt(UPDATED_UPDATED_AT);
         SubCategoriesDTO subCategoriesDTO = subCategoriesMapper.toDto(updatedSubCategories);
 
         restSubCategoriesMockMvc.perform(put("/api/sub-categories")
@@ -238,8 +246,9 @@ public class SubCategoriesResourceIntTest {
         assertThat(subCategoriesList).hasSize(databaseSizeBeforeUpdate);
         SubCategories testSubCategories = subCategoriesList.get(subCategoriesList.size() - 1);
         assertThat(testSubCategories.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testSubCategories.isDefinedByJBH()).isEqualTo(UPDATED_DEFINED_BY_JBH);
-        assertThat(testSubCategories.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
+        assertThat(testSubCategories.isByDefault()).isEqualTo(UPDATED_BY_DEFAULT);
+        assertThat(testSubCategories.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
+        assertThat(testSubCategories.getUpdatedAt()).isEqualTo(UPDATED_UPDATED_AT);
     }
 
     @Test
@@ -250,7 +259,7 @@ public class SubCategoriesResourceIntTest {
         // Create the SubCategories
         SubCategoriesDTO subCategoriesDTO = subCategoriesMapper.toDto(subCategories);
 
-        // If the entity doesn't have an ID, it will throw BadRequestAlertException 
+        // If the entity doesn't have an ID, it will be created instead of just being updated
         restSubCategoriesMockMvc.perform(put("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(subCategoriesDTO)))

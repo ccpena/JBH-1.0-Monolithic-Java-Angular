@@ -6,31 +6,27 @@
             "fieldType": "BigDecimal"
         },
         {
-            "fieldName": "createDate",
+            "fieldName": "createdAt",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updatedAt",
             "fieldType": "LocalDate"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idUserGroup",
-            "otherEntityName": "usersGroup",
+            "relationshipName": "userGroupAccount",
+            "otherEntityName": "userGroupAccount",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "movementesOutgoings"
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idSubCategory",
+            "relationshipName": "subCategory",
             "otherEntityName": "subCategories",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "movementesOutgoings"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "paymentMethod",
-            "otherEntityName": "accounts",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "movementesOutgoings"
@@ -44,6 +40,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

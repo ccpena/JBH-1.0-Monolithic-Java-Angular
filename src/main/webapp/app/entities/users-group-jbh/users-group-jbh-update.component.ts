@@ -6,6 +6,8 @@ import { JhiAlertService } from 'ng-jhipster';
 
 import { IUsersGroupJbh } from 'app/shared/model/users-group-jbh.model';
 import { UsersGroupJbhService } from './users-group-jbh.service';
+import { IMembersGroupJbh } from 'app/shared/model/members-group-jbh.model';
+import { MembersGroupJbhService } from 'app/entities/members-group-jbh';
 import { IUser, UserService } from 'app/core';
 
 @Component({
@@ -16,11 +18,14 @@ export class UsersGroupJbhUpdateComponent implements OnInit {
     private _usersGroup: IUsersGroupJbh;
     isSaving: boolean;
 
+    membersgroups: IMembersGroupJbh[];
+
     users: IUser[];
 
     constructor(
         private jhiAlertService: JhiAlertService,
         private usersGroupService: UsersGroupJbhService,
+        private membersGroupService: MembersGroupJbhService,
         private userService: UserService,
         private activatedRoute: ActivatedRoute
     ) {}
@@ -30,6 +35,12 @@ export class UsersGroupJbhUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ usersGroup }) => {
             this.usersGroup = usersGroup;
         });
+        this.membersGroupService.query().subscribe(
+            (res: HttpResponse<IMembersGroupJbh[]>) => {
+                this.membersgroups = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
         this.userService.query().subscribe(
             (res: HttpResponse<IUser[]>) => {
                 this.users = res.body;
@@ -66,6 +77,10 @@ export class UsersGroupJbhUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    trackMembersGroupById(index: number, item: IMembersGroupJbh) {
+        return item.id;
     }
 
     trackUserById(index: number, item: IUser) {

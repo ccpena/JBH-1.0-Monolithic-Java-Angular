@@ -8,11 +8,17 @@
     -->
     <changeSet id="20180819154826-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="id_user_group_id"
+        <addForeignKeyConstraint baseColumnNames="user_group_id"
                                  baseTableName="user_group_categories"
-                                 constraintName="fk_user_group_categories_id_user_group_id"
+                                 constraintName="fk_user_group_categories_user_group_id"
                                  referencedColumnNames="id"
                                  referencedTableName="users_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="user_group_categories"
+                                 constraintName="fk_user_group_categories_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categories"/>
 
     </changeSet>
 </databaseChangeLog>

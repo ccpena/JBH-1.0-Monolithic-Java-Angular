@@ -1,91 +1,93 @@
 package com.kkpa.jbh.service.dto;
 
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A DTO for the UsersGroup entity.
  */
-
 public class UsersGroupDTO implements Serializable {
 
-  private Long id;
+    private Long id;
 
-  private String name;
+    private String name;
 
-  private Boolean invitationAccepted;
+    private LocalDate createdAt;
 
-  private String idUserOwnerId;
+    private LocalDate updatedAt;
 
-  private String idUserInvitedId;
+    private Long userOwnerId;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+    public Long getId() {
+        return id;
     }
 
-    UsersGroupDTO usersGroupDTO = (UsersGroupDTO) o;
-    if (usersGroupDTO.getId() == null || getId() == null) {
-      return false;
+    public void setId(Long id) {
+        this.id = id;
     }
-    return Objects.equals(getId(), usersGroupDTO.getId());
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(getId());
-  }
+    public String getName() {
+        return name;
+    }
 
-  @Override
-  public String toString() {
-    return "UsersGroupDTO{" + "id=" + getId() + ", name='" + getName() + "'"
-        + ", invitationAccepted='" + getInvitationAccepted() + "'" + ", idUserOwner="
-        + getIdUserOwnerId() + ", idUserInvited=" + getIdUserInvitedId() + "}";
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
-  public Boolean getInvitationAccepted() {
-    return invitationAccepted;
-  }
+    public Long getUserOwnerId() {
+        return userOwnerId;
+    }
 
-  public void setInvitationAccepted(Boolean invitationAccepted) {
-    this.invitationAccepted = invitationAccepted;
-  }
+    public void setUserOwnerId(Long userId) {
+        this.userOwnerId = userId;
+    }
 
-  public String getIdUserOwnerId() {
-    return idUserOwnerId;
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-  public void setIdUserOwnerId(String idUserOwnerId) {
-    this.idUserOwnerId = idUserOwnerId;
-  }
+        UsersGroupDTO usersGroupDTO = (UsersGroupDTO) o;
+        if (usersGroupDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), usersGroupDTO.getId());
+    }
 
-  public String getIdUserInvitedId() {
-    return idUserInvitedId;
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
 
-  public void setIdUserInvitedId(String idUserInvitedId) {
-    this.idUserInvitedId = idUserInvitedId;
-  }
-
-
+    @Override
+    public String toString() {
+        return "UsersGroupDTO{" +
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", userOwner=" + getUserOwnerId() +
+            "}";
+    }
 }

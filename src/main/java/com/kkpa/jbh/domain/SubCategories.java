@@ -31,15 +31,18 @@ public class SubCategories implements Serializable {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "defined_by_jbh")
-    private Boolean definedByJBH;
+    @Column(name = "by_default")
+    private Boolean byDefault;
 
-    @Column(name = "creation_date")
-    private LocalDate creationDate;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
     @ManyToOne
     @JsonIgnoreProperties("subCategories")
-    private Categories categories;
+    private Categories category;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -63,43 +66,56 @@ public class SubCategories implements Serializable {
         this.name = name;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public SubCategories definedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public SubCategories byDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
         return this;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public SubCategories creationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public SubCategories createdAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Categories getCategories() {
-        return categories;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public SubCategories categories(Categories categories) {
-        this.categories = categories;
+    public SubCategories updatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 
-    public void setCategories(Categories categories) {
-        this.categories = categories;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Categories getCategory() {
+        return category;
+    }
+
+    public SubCategories category(Categories categories) {
+        this.category = categories;
+        return this;
+    }
+
+    public void setCategory(Categories categories) {
+        this.category = categories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -128,8 +144,9 @@ public class SubCategories implements Serializable {
         return "SubCategories{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
-            ", creationDate='" + getCreationDate() + "'" +
+            ", byDefault='" + isByDefault() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
             "}";
     }
 }

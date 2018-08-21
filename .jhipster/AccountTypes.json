@@ -6,7 +6,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "definedByJBH",
+            "fieldName": "byDefault",
             "fieldType": "Boolean"
         }
     ],
@@ -19,6 +19,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

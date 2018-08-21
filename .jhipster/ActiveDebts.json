@@ -2,18 +2,18 @@
     "name": "ActiveDebts",
     "fields": [
         {
-            "fieldName": "value",
+            "fieldName": "totalValue",
             "fieldType": "BigDecimal"
         },
         {
-            "fieldName": "createDate",
+            "fieldName": "createdAt",
             "fieldType": "LocalDate"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idDebtor",
+            "relationshipName": "debtor",
             "otherEntityName": "usersGroup",
             "otherEntityField": "id",
             "ownerSide": true,
@@ -21,7 +21,7 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idCreditor",
+            "relationshipName": "creditor",
             "otherEntityName": "usersGroup",
             "otherEntityField": "id",
             "ownerSide": true,
@@ -29,7 +29,7 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idSubCategory",
+            "relationshipName": "subCategory",
             "otherEntityName": "subCategories",
             "otherEntityField": "id",
             "ownerSide": true,
@@ -37,7 +37,7 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "idMovementOutgoing",
+            "relationshipName": "movementOutgoing",
             "otherEntityName": "movementesOutgoings",
             "otherEntityField": "id",
             "ownerSide": true,
@@ -52,6 +52,5 @@
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*",
-    "angularJSSuffix": "JBH"
+    "applications": "*"
 }

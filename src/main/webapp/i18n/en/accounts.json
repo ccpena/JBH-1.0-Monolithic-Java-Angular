@@ -16,8 +16,10 @@
             "detail": {
                 "title": "Accounts"
             },
-            "type": "Type",
-            "idUsrGroup": "Id Usr Group"
+            "description": "Description",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At",
+            "usrGroup": "Usr Group"
         }
     }
 }

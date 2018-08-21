@@ -8,23 +8,17 @@
     -->
     <changeSet id="20180819154830-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="id_user_group_id"
+        <addForeignKeyConstraint baseColumnNames="user_group_account_id"
                                  baseTableName="movementes_outgoings"
-                                 constraintName="fk_movementes_outgoings_id_user_group_id"
+                                 constraintName="fk_movementes_outgoings_user_group_account_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="users_group"/>
+                                 referencedTableName="user_group_account"/>
 
-        <addForeignKeyConstraint baseColumnNames="id_sub_category_id"
+        <addForeignKeyConstraint baseColumnNames="sub_category_id"
                                  baseTableName="movementes_outgoings"
-                                 constraintName="fk_movementes_outgoings_id_sub_category_id"
+                                 constraintName="fk_movementes_outgoings_sub_category_id"
                                  referencedColumnNames="id"
                                  referencedTableName="sub_categories"/>
-
-        <addForeignKeyConstraint baseColumnNames="payment_method_id"
-                                 baseTableName="movementes_outgoings"
-                                 constraintName="fk_movementes_outgoings_payment_method_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="accounts"/>
 
     </changeSet>
 </databaseChangeLog>

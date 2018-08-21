@@ -8,15 +8,9 @@
     -->
     <changeSet id="20180819154828-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="type_id"
+        <addForeignKeyConstraint baseColumnNames="usr_group_id"
                                  baseTableName="accounts"
-                                 constraintName="fk_accounts_type_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="account_types"/>
-
-        <addForeignKeyConstraint baseColumnNames="id_usr_group_id"
-                                 baseTableName="accounts"
-                                 constraintName="fk_accounts_id_usr_group_id"
+                                 constraintName="fk_accounts_usr_group_id"
                                  referencedColumnNames="id"
                                  referencedTableName="users_group"/>
 

@@ -16,11 +16,13 @@ public class SubCategoriesDTO implements Serializable {
     @Size(max = 100)
     private String name;
 
-    private Boolean definedByJBH;
+    private Boolean byDefault;
 
-    private LocalDate creationDate;
+    private LocalDate createdAt;
 
-    private Long categoriesId;
+    private LocalDate updatedAt;
+
+    private Long categoryId;
 
     public Long getId() {
         return id;
@@ -38,28 +40,36 @@ public class SubCategoriesDTO implements Serializable {
         this.name = name;
     }
 
-    public Boolean isDefinedByJBH() {
-        return definedByJBH;
+    public Boolean isByDefault() {
+        return byDefault;
     }
 
-    public void setDefinedByJBH(Boolean definedByJBH) {
-        this.definedByJBH = definedByJBH;
+    public void setByDefault(Boolean byDefault) {
+        this.byDefault = byDefault;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Long getCategoriesId() {
-        return categoriesId;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setCategoriesId(Long categoriesId) {
-        this.categoriesId = categoriesId;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoriesId) {
+        this.categoryId = categoriesId;
     }
 
     @Override
@@ -88,9 +98,10 @@ public class SubCategoriesDTO implements Serializable {
         return "SubCategoriesDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", definedByJBH='" + isDefinedByJBH() + "'" +
-            ", creationDate='" + getCreationDate() + "'" +
-            ", categories=" + getCategoriesId() +
+            ", byDefault='" + isByDefault() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            ", updatedAt='" + getUpdatedAt() + "'" +
+            ", category=" + getCategoryId() +
             "}";
     }
 }
